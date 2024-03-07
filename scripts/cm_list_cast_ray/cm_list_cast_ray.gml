@@ -1,0 +1,23 @@
+function cm_list_cast_ray(list, ray, mask = -1)
+{
+	var rayCastHasBeenDone = CM_RAYMAP[CM_RECURSION];
+	if (rayCastHasBeenDone < 0)
+	{
+		rayCastHasBeenDone = ds_map_create();
+		CM_RAYMAP[CM_RECURSION] = rayCastHasBeenDone;
+	}
+	
+	var num = CM_LIST_SIZE + CM_LIST_NUM;
+	++ CM_RECURSION;
+	for (var i = CM_LIST_NUM; i < num; i ++)
+	{
+		var object = list[i];
+		if (!is_undefined(rayCastHasBeenDone[? object])) continue;
+		
+		CM_CAST_RAY(object, ray);
+		rayCastHasBeenDone[? object] = true;
+	}
+	-- CM_RECURSION;
+	ds_map_clear(rayCastHasBeenDone);
+	return ray;
+}
