@@ -7,9 +7,9 @@ function cm_collider_step_towards(collider, object, targetX, targetY, targetZ, m
 	while (steps)
 	{
 		var stepsize = min(stepLength, d / steps) / d;
-		collider[CM.X] = lerp(collider[CM.X], targetX, stepsize);
-		collider[CM.Y] = lerp(collider[CM.Y], targetY, stepsize);
-		collider[CM.Z] = lerp(collider[CM.Z], targetZ, stepsize);
+		collider[@ CM.X] = lerp(collider[CM.X], targetX, stepsize);
+		collider[@ CM.Y] = lerp(collider[CM.Y], targetY, stepsize);
+		collider[@ CM.Z] = lerp(collider[CM.Z], targetZ, stepsize);
 		col |= cm_displace(object, collider, mask);
 		if (--steps)
 		{

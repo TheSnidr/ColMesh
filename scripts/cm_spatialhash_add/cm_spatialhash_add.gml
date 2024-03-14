@@ -3,8 +3,8 @@ function cm_spatialhash_add(spatialhash, object)
 	//If the object is an object list (which is what's created when loading a mesh), add each element individually
 	if (object[CM_TYPE] == CM_OBJECTS.LIST)
 	{
-		var num = - object[CM_ARGS_LIST.NEGATIVESIZE];
-		for (var i = num + CM_LIST_NUM - 1; i >= 0; -- i)
+		var num = array_length(object);
+		for (var i = CM_LIST_NUM; i < num; ++ i)
 		{
 			if (!is_array(object[i])){continue;}
 			cm_spatialhash_add(spatialhash, object[i]);

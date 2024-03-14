@@ -11,11 +11,11 @@ function cm_collider_get_aabb(collider)
 	var xup = collider[CM.XUP] * height;
 	var yup = collider[CM.YUP] * height;
 	var zup = collider[CM.ZUP] * height;
-	AABB[0] = X + min(xup, 0) - radius;
-	AABB[1] = Y + min(yup, 0) - radius;
-	AABB[2] = Z + min(zup, 0) - radius;
-	AABB[3] = X + max(xup, 0) + radius;
-	AABB[4] = Y + max(yup, 0) + radius;
-	AABB[5] = Z + max(zup, 0) + radius;
+	AABB[@ 0] = X + min(xup, 0) - radius;
+	AABB[@ 1] = Y + min(yup, 0) - radius;
+	AABB[@ 2] = Z + min(zup, 0) - radius;
+	AABB[@ 3] = X + max(xup, 0) + radius;
+	AABB[@ 4] = Y + max(yup, 0) + radius;
+	AABB[@ 5] = Z + max(zup, 0) + radius;
 	return AABB;
 }

@@ -28,25 +28,25 @@ enum CM
 function cm_collider(X, Y, Z, xup, yup, zup, radius, height, slopeAngle = 40, precision = 0, mask = 0)
 {
 	var collider = array_create(CM.NUM);
-	collider[CM.TYPE] = CM_OBJECTS.COLLIDERCAPSULE;
-	collider[CM.X] = X;
-	collider[CM.Y] = Y;
-	collider[CM.Z] = Z;
-	collider[CM.XUP] = xup;
-	collider[CM.YUP] = yup;
-	collider[CM.ZUP] = zup;
-	collider[CM.R] = radius;
-	collider[CM.H] = height;
-	collider[CM.MASK] = mask;
-	collider[CM.PRECISION] = precision;
-	collider[CM.SLOPEANGLE] = slopeAngle;
+	collider[@ CM.TYPE] = CM_OBJECTS.COLLIDERCAPSULE;
+	collider[@ CM.X] = X;
+	collider[@ CM.Y] = Y;
+	collider[@ CM.Z] = Z;
+	collider[@ CM.XUP] = xup;
+	collider[@ CM.YUP] = yup;
+	collider[@ CM.ZUP] = zup;
+	collider[@ CM.R] = radius;
+	collider[@ CM.H] = height;
+	collider[@ CM.MASK] = mask;
+	collider[@ CM.PRECISION] = precision;
+	collider[@ CM.SLOPEANGLE] = slopeAngle;
 	return __cmi_collider_reset(collider);
 }
 
 function __cmi_collider_reset(collider)
 {
 	collider[@ CM.MAXDP] = -1;
-	collider[@ CM.REGION] = [];
+	collider[@ CM.REGION] = cm_list();
 	collider[@ CM.GROUND] = false;
 	collider[@ CM.COLLISIONS] = [];
 	collider[@ CM.COLLISION] = false;

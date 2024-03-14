@@ -9,13 +9,13 @@ levelColmesh = cm_spatialhash(150);
 //-----------------------------------------------------
 //	Load level geometry from obj and add it to the levelColmesh
 var matrix = matrix_build(room_width / 2, room_height / 2, 0, -90, 0, 0, 1, - 1, 1);
-cm_add(levelColmesh, cm_load_obj("ColMesh Demo/Demo1Level.obj", matrix, true));
+cm_add_obj(levelColmesh, "ColMesh Demo/Demo1Level.obj", matrix, true);
 
 //-----------------------------------------------------
 //  Load tree model and add 10 copies of it to the level
 var treeMesh = cm_spatialhash(30);
 var matrix = matrix_build(0, 0, 0, -90, 0, 0, 25, - 25, 25);
-cm_add(treeMesh, cm_load_obj("ColMesh Demo/SmallTreeLowPoly.obj", matrix, true));
+cm_add_obj(treeMesh, "ColMesh Demo/SmallTreeLowPoly.obj", matrix, true);
 repeat 10
 {
 	var xx = random(room_width);
