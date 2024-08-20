@@ -1,10 +1,10 @@
-function cm_aab_cast_ray(aab, ray)
+function cm_aab_cast_ray(aab, ray, mask = ray[CM_RAY.MASK])
 {
 	/*
 		A supplementary function, not meant to be used by itself.
 		Used by colmesh.castRay
 	*/
-	if (CM_RAY_MASK != 0 && (CM_RAY_MASK & CM_AAB_GROUP) == 0){return ray;}
+	if (mask != 0 && (mask & CM_AAB_GROUP) == 0){return ray;}
 	
 	var cx = CM_AAB_X;
 	var cy = CM_AAB_Y;
@@ -13,13 +13,13 @@ function cm_aab_cast_ray(aab, ray)
 	var halfY = CM_AAB_HALFY;
 	var halfZ = CM_AAB_HALFZ;
 	
-	var x1 = (CM_RAY_X1 - cx) / halfX;
-	var y1 = (CM_RAY_Y1 - cy) / halfY;
-	var z1 = (CM_RAY_Z1 - cz) / halfZ;
-	var x2 = (CM_RAY_X2 - cx) / halfX;
-	var y2 = (CM_RAY_Y2 - cy) / halfY;
-	var z2 = (CM_RAY_Z2 - cz) / halfZ;
-	var T = CM_RAY_T;
+	var x1 = (ray[CM_RAY.X1] - cx) / halfX;
+	var y1 = (ray[CM_RAY.Y1] - cy) / halfY;
+	var z1 = (ray[CM_RAY.Z1] - cz) / halfZ;
+	var x2 = (ray[CM_RAY.X2] - cx) / halfX;
+	var y2 = (ray[CM_RAY.Y2] - cy) / halfY;
+	var z2 = (ray[CM_RAY.Z2] - cz) / halfZ;
+	var T = ray[CM_RAY.T];
 		
 	var t, nx, ny, nz;
 	if (x2 != x1 && abs(x1) > 1)
@@ -32,15 +32,15 @@ function cm_aab_cast_ray(aab, ray)
 			var itsZ = lerp(z1, z2, t);
 			if (abs(itsY) <= 1 && abs(itsZ) <= 1)
 			{
-				CM_RAY_T = t;
-				CM_RAY_HIT = true;
-				CM_RAY_HITX = cx + s * halfX;
-				CM_RAY_HITY = cy + itsY * halfY;
-				CM_RAY_HITZ = cz + itsZ * halfZ;
-				CM_RAY_NX = sign(x1);
-				CM_RAY_NY = 0;
-				CM_RAY_NZ = 0;
-				CM_RAY_OBJECT = aab;
+				ray[@ CM_RAY.T] = t;
+				ray[@ CM_RAY.HIT] = true;
+				ray[@ CM_RAY.X] = cx + s * halfX;
+				ray[@ CM_RAY.Y] = cy + itsY * halfY;
+				ray[@ CM_RAY.Z] = cz + itsZ * halfZ;
+				ray[@ CM_RAY.NX] = sign(x1);
+				ray[@ CM_RAY.NY] = 0;
+				ray[@ CM_RAY.NZ] = 0;
+				ray[@ CM_RAY.OBJECT] = aab;
 				return ray;
 			}
 		}
@@ -55,15 +55,15 @@ function cm_aab_cast_ray(aab, ray)
 			var itsZ = lerp(z1, z2, t);
 			if (abs(itsX) <= 1 && abs(itsZ) <= 1)
 			{
-				CM_RAY_T = t;
-				CM_RAY_HIT = true;
-				CM_RAY_HITX = cx + itsX * halfX;
-				CM_RAY_HITY = cy + s * halfY;
-				CM_RAY_HITZ = cz + itsZ * halfZ;
-				CM_RAY_NX = 0;
-				CM_RAY_NY = sign(y1);
-				CM_RAY_NZ = 0;
-				CM_RAY_OBJECT = aab;
+				ray[@ CM_RAY.T] = t;
+				ray[@ CM_RAY.HIT] = true;
+				ray[@ CM_RAY.X] = cx + itsX * halfX;
+				ray[@ CM_RAY.Y] = cy + s * halfY;
+				ray[@ CM_RAY.Z] = cz + itsZ * halfZ;
+				ray[@ CM_RAY.NX] = 0;
+				ray[@ CM_RAY.NY] = sign(y1);
+				ray[@ CM_RAY.NZ] = 0;
+				ray[@ CM_RAY.OBJECT] = aab;
 				return ray;
 			}
 		}
@@ -78,15 +78,15 @@ function cm_aab_cast_ray(aab, ray)
 			var itsY = lerp(y1, y2, t);
 			if (abs(itsX) <= 1 && abs(itsY) <= 1)
 			{
-				CM_RAY_T = t;
-				CM_RAY_HIT = true;
-				CM_RAY_HITX = cx + itsX * halfX;
-				CM_RAY_HITY = cy + itsY * halfY;
-				CM_RAY_HITZ = cz + s * halfZ;
-				CM_RAY_NX = 0;
-				CM_RAY_NY = 0;
-				CM_RAY_NZ = sign(z1);
-				CM_RAY_OBJECT = aab;
+				ray[@ CM_RAY.T] = t;
+				ray[@ CM_RAY.HIT] = true;
+				ray[@ CM_RAY.X] = cx + itsX * halfX;
+				ray[@ CM_RAY.Y] = cy + itsY * halfY;
+				ray[@ CM_RAY.Z] = cz + s * halfZ;
+				ray[@ CM_RAY.NX] = 0;
+				ray[@ CM_RAY.NY] = 0;
+				ray[@ CM_RAY.NZ] = sign(z1);
+				ray[@ CM_RAY.OBJECT] = aab;
 				return ray;
 			}
 		}

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"draw_circular_shadow",
   "isCompatibility":false,
   "isDnD":false,

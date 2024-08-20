@@ -96,6 +96,8 @@ function cm_add_obj(container, filename, matrix = undefined, singlesided = true,
 	//Loop through the loaded information and generate a model
 	if (is_array(matrix))
 	{
+		var normalmatrix = cm_matrix_transpose(cm_matrix_invert_orientation(matrix));
+	
 		for (var f = 0; f < F_num; f += 3)
 		{
 			//Add the vertex to the model buffer
@@ -113,7 +115,7 @@ function cm_add_obj(container, filename, matrix = undefined, singlesided = true,
 					continue;
 				}
 				var v1 = matrix_transform_vertex(matrix, v1[0], v1[1], v1[2]);
-				var n1 = matrix_transform_vertex(matrix, n1[0], n1[1], n1[2], 0);
+				var n1 = matrix_transform_vertex(normalmatrix, n1[0], n1[1], n1[2], 0);
 				var l1 = point_distance_3d(0, 0, 0, n1[0], n1[1], n1[2]);
 				n1[0] /= l1; n1[1] /= l1; n1[2] /= l1;
 				
@@ -123,7 +125,7 @@ function cm_add_obj(container, filename, matrix = undefined, singlesided = true,
 				if !is_array(v2){v2 = [0, 0, 0];}
 				if !is_array(n2){n2 = [0, 0, 1];}
 				var v2 = matrix_transform_vertex(matrix, v2[0], v2[1], v2[2]);
-				var n2 = matrix_transform_vertex(matrix, n2[0], n2[1], n2[2], 0);
+				var n2 = matrix_transform_vertex(normalmatrix, n2[0], n2[1], n2[2], 0);
 				var l2 = point_distance_3d(0, 0, 0, n2[0], n2[1], n2[2]);
 				n2[0] /= l2; n2[1] /= l2; n2[2] /= l2;
 				
@@ -133,7 +135,7 @@ function cm_add_obj(container, filename, matrix = undefined, singlesided = true,
 				if !is_array(v3){v3 = [0, 0, 0];}
 				if !is_array(n3){n3 = [0, 0, 1];}
 				var v3 = matrix_transform_vertex(matrix, v3[0], v3[1], v3[2]);
-				var n3 = matrix_transform_vertex(matrix, n3[0], n3[1], n3[2], 0);
+				var n3 = matrix_transform_vertex(normalmatrix, n3[0], n3[1], n3[2], 0);
 				var l3 = point_distance_3d(0, 0, 0, n3[0], n3[1], n3[2]);
 				n3[0] /= l3; n3[1] /= l3; n3[2] /= l3;
 		
@@ -151,7 +153,7 @@ function cm_add_obj(container, filename, matrix = undefined, singlesided = true,
 				if !is_array(v){v = [0, 0, 0];}
 				var v3 = matrix_transform_vertex(matrix, v[0], v[1], v[2]);
 		
-				cm_add(container, cm_triangle(singlesided, v1[0], v1[1], v1[2], v2[0], v2[1], v2[2], v3[0], v3[1], v3[2], group));
+				cm_add(container, cm_triangle(singlesided, v1[0], v1[1], v1[2], v2[0], v2[1], v2[2], v3[0], v3[1], v3[2], undefined, undefined, undefined, group));
 			}
 		}
 	}
@@ -196,7 +198,7 @@ function cm_add_obj(container, filename, matrix = undefined, singlesided = true,
 				var v3 = V[F[f+2][0]];
 				if !is_array(v3){v3 = [0, 0, 0];}
 		
-				cm_add(container, cm_triangle(singlesided, v1[0], v1[1], v1[2], v2[0], v2[1], v2[2], v3[0], v3[1], v3[2], group));
+				cm_add(container, cm_triangle(singlesided, v1[0], v1[1], v1[2], v2[0], v2[1], v2[2], v3[0], v3[1], v3[2], undefined, undefined, undefined, group));
 			}
 		}
 	}

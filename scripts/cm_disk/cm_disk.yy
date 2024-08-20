@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_disk",
   "isCompatibility":false,
   "isDnD":false,

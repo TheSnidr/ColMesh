@@ -8,7 +8,7 @@ function cm_dynamic_update_container(dynamic, container)
 	var containerType = container[CM_TYPE];
 	if (containerType == CM_OBJECTS.SPATIALHASH)
 	{
-		var rsize = container[CM_ARGS_SPATIALHASH.REGIONSIZE];
+		var rsize = container[CM_SPATIALHASH.REGIONSIZE];
 		if (floor(AABBPREV[0] / rsize) != floor(AABB[0] / rsize) ||
 			floor(AABBPREV[1] / rsize) != floor(AABB[1] / rsize) ||
 			floor(AABBPREV[2] / rsize) != floor(AABB[2] / rsize) ||
@@ -16,17 +16,17 @@ function cm_dynamic_update_container(dynamic, container)
 			floor(AABBPREV[4] / rsize) != floor(AABB[4] / rsize) ||
 			floor(AABBPREV[5] / rsize) != floor(AABB[5] / rsize))
 		{
-			dynamic[@ CM_ARGS_DYNAMIC.AABB] = AABBPREV;
+			CM_DYNAMIC_AABB = AABBPREV;
 			cm_spatialhash_remove(container, dynamic);
-			dynamic[@ CM_ARGS_DYNAMIC.AABB] = AABB;
+			CM_DYNAMIC_AABB = AABB;
 			cm_spatialhash_add(container, dynamic);
 		}
 		return true;
 	}
 	if (containerType == CM_OBJECTS.QUADTREE)
 	{
-		var aabb = container[CM_ARGS_QUADTREE.AABB];
-		var rsize = container[CM_ARGS_QUADTREE.REGIONSIZE] / (1 << container[CM_ARGS_QUADTREE.MAXSUBDIVISIONS]);
+		var aabb = container[CM_QUADTREE.AABB];
+		var rsize = container[CM_QUADTREE.REGIONSIZE];
 		if (floor(AABBPREV[0] / rsize) != floor(AABB[0] / rsize) ||
 			floor(AABBPREV[1] / rsize) != floor(AABB[1] / rsize) ||
 			floor(AABBPREV[3] / rsize) != floor(AABB[3] / rsize) ||
@@ -41,8 +41,7 @@ function cm_dynamic_update_container(dynamic, container)
 	}
 	if (containerType == CM_OBJECTS.OCTREE)
 	{
-		var aabb = container[CM_ARGS_OCTREE.AABB];
-		var rsize = container[CM_ARGS_OCTREE.REGIONSIZE] / (1 << container[CM_ARGS_OCTREE.MAXSUBDIVISIONS]);
+		var rsize = container[CM_OCTREE.REGIONSIZE];
 		if (floor(AABBPREV[0] / rsize) != floor(AABB[0] / rsize) ||
 			floor(AABBPREV[1] / rsize) != floor(AABB[1] / rsize) ||
 			floor(AABBPREV[2] / rsize) != floor(AABB[2] / rsize) ||

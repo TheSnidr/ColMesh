@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_disk_check",
   "isCompatibility":false,
   "isDnD":false,

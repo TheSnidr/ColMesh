@@ -1,4 +1,4 @@
-enum CM_ARGS_TRIANGLE
+enum CM_TRIANGLE
 {
 	TYPE, 
 	GROUP,
@@ -19,27 +19,27 @@ enum CM_ARGS_TRIANGLE
 
 enum CM_ARGS_SMOOTHTRIANGLE
 {
-	N1 = CM_ARGS_TRIANGLE.NUM,
+	N1 = CM_TRIANGLE.NUM,
 	N2,
 	N3,
 	NUM
 }
 
-#macro CM_TRIANGLE_BEGIN	var triangle = array_create(CM_ARGS_TRIANGLE.NUM)
-#macro CM_TRIANGLE_TYPE		triangle[@ CM_ARGS_TRIANGLE.TYPE]
-#macro CM_TRIANGLE_GROUP	triangle[@ CM_ARGS_TRIANGLE.GROUP]
-#macro CM_TRIANGLE_X1		triangle[@ CM_ARGS_TRIANGLE.X1]
-#macro CM_TRIANGLE_Y1		triangle[@ CM_ARGS_TRIANGLE.Y1]
-#macro CM_TRIANGLE_Z1		triangle[@ CM_ARGS_TRIANGLE.Z1]
-#macro CM_TRIANGLE_X2		triangle[@ CM_ARGS_TRIANGLE.X2]
-#macro CM_TRIANGLE_Y2		triangle[@ CM_ARGS_TRIANGLE.Y2]
-#macro CM_TRIANGLE_Z2		triangle[@ CM_ARGS_TRIANGLE.Z2]
-#macro CM_TRIANGLE_X3		triangle[@ CM_ARGS_TRIANGLE.X3]
-#macro CM_TRIANGLE_Y3		triangle[@ CM_ARGS_TRIANGLE.Y3]
-#macro CM_TRIANGLE_Z3		triangle[@ CM_ARGS_TRIANGLE.Z3]
-#macro CM_TRIANGLE_NX		triangle[@ CM_ARGS_TRIANGLE.NX]
-#macro CM_TRIANGLE_NY		triangle[@ CM_ARGS_TRIANGLE.NY]
-#macro CM_TRIANGLE_NZ		triangle[@ CM_ARGS_TRIANGLE.NZ]
+#macro CM_TRIANGLE_BEGIN	var triangle = array_create(CM_TRIANGLE.NUM)
+#macro CM_TRIANGLE_TYPE		triangle[@ CM_TRIANGLE.TYPE]
+#macro CM_TRIANGLE_GROUP	triangle[@ CM_TRIANGLE.GROUP]
+#macro CM_TRIANGLE_X1		triangle[@ CM_TRIANGLE.X1]
+#macro CM_TRIANGLE_Y1		triangle[@ CM_TRIANGLE.Y1]
+#macro CM_TRIANGLE_Z1		triangle[@ CM_TRIANGLE.Z1]
+#macro CM_TRIANGLE_X2		triangle[@ CM_TRIANGLE.X2]
+#macro CM_TRIANGLE_Y2		triangle[@ CM_TRIANGLE.Y2]
+#macro CM_TRIANGLE_Z2		triangle[@ CM_TRIANGLE.Z2]
+#macro CM_TRIANGLE_X3		triangle[@ CM_TRIANGLE.X3]
+#macro CM_TRIANGLE_Y3		triangle[@ CM_TRIANGLE.Y3]
+#macro CM_TRIANGLE_Z3		triangle[@ CM_TRIANGLE.Z3]
+#macro CM_TRIANGLE_NX		triangle[@ CM_TRIANGLE.NX]
+#macro CM_TRIANGLE_NY		triangle[@ CM_TRIANGLE.NY]
+#macro CM_TRIANGLE_NZ		triangle[@ CM_TRIANGLE.NZ]
 #macro CM_TRIANGLE_N1		triangle[@ CM_ARGS_SMOOTHTRIANGLE.N1]
 #macro CM_TRIANGLE_N2		triangle[@ CM_ARGS_SMOOTHTRIANGLE.N2]
 #macro CM_TRIANGLE_N3		triangle[@ CM_ARGS_SMOOTHTRIANGLE.N3]

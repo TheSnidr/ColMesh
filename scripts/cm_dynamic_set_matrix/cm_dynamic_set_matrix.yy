@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_dynamic_set_matrix",
   "isCompatibility":false,
   "isDnD":false,

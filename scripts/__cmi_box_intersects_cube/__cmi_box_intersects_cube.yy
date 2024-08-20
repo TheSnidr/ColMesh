@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__cmi_box_intersects_cube",
   "isCompatibility":false,
   "isDnD":false,

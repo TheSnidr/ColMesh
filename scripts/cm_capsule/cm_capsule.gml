@@ -1,4 +1,4 @@
-enum CM_ARGS_CAPSULE
+enum CM_CAPSULE
 {
 	TYPE, 
 	GROUP,
@@ -12,16 +12,16 @@ enum CM_ARGS_CAPSULE
 	NUM
 }
 
-#macro CM_CAPSULE_BEGIN	 var capsule = array_create(CM_ARGS_CAPSULE.NUM, CM_OBJECTS.CAPSULE)
-#macro CM_CAPSULE_TYPE   capsule[@ CM_ARGS_CAPSULE.TYPE]
-#macro CM_CAPSULE_GROUP  capsule[@ CM_ARGS_CAPSULE.GROUP]
-#macro CM_CAPSULE_R		 capsule[@ CM_ARGS_CAPSULE.R]
-#macro CM_CAPSULE_X1	 capsule[@ CM_ARGS_CAPSULE.X1]
-#macro CM_CAPSULE_Y1	 capsule[@ CM_ARGS_CAPSULE.Y1]
-#macro CM_CAPSULE_Z1	 capsule[@ CM_ARGS_CAPSULE.Z1]
-#macro CM_CAPSULE_X2	 capsule[@ CM_ARGS_CAPSULE.X2]
-#macro CM_CAPSULE_Y2	 capsule[@ CM_ARGS_CAPSULE.Y2]
-#macro CM_CAPSULE_Z2	 capsule[@ CM_ARGS_CAPSULE.Z2]
+#macro CM_CAPSULE_BEGIN	 var capsule = array_create(CM_CAPSULE.NUM, CM_OBJECTS.CAPSULE)
+#macro CM_CAPSULE_TYPE   capsule[@ CM_CAPSULE.TYPE]
+#macro CM_CAPSULE_GROUP  capsule[@ CM_CAPSULE.GROUP]
+#macro CM_CAPSULE_R		 capsule[@ CM_CAPSULE.R]
+#macro CM_CAPSULE_X1	 capsule[@ CM_CAPSULE.X1]
+#macro CM_CAPSULE_Y1	 capsule[@ CM_CAPSULE.Y1]
+#macro CM_CAPSULE_Z1	 capsule[@ CM_CAPSULE.Z1]
+#macro CM_CAPSULE_X2	 capsule[@ CM_CAPSULE.X2]
+#macro CM_CAPSULE_Y2	 capsule[@ CM_CAPSULE.Y2]
+#macro CM_CAPSULE_Z2	 capsule[@ CM_CAPSULE.Z2]
 #macro CM_CAPSULE_DX	 CM_CAPSULE_X2 - CM_CAPSULE_X1
 #macro CM_CAPSULE_DY	 CM_CAPSULE_Y2 - CM_CAPSULE_Y1
 #macro CM_CAPSULE_DZ	 CM_CAPSULE_Z2 - CM_CAPSULE_Z1

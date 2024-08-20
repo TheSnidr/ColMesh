@@ -1,27 +1,24 @@
-function cm_torus_cast_ray(torus, ray)
+function cm_torus_cast_ray(torus, ray, mask = ray[CM_RAY.MASK])
 {
 	/*
-		A supplementary function, not meant to be used by itself.
-		Used by colmesh.castRay
-		Changes the global array cmRay if the ray intersects the shape
 		This is an approximation using the same principle as ray marching
 	*/
-	if (CM_RAY_MASK != 0 && (CM_RAY_MASK & CM_TORUS_GROUP) == 0){return ray;}
+	if (mask != 0 && (mask & CM_TORUS_GROUP) == 0){return ray;}
 	
 	var repetitions = 14;
 	
 	var X = CM_TORUS_X;
 	var Y = CM_TORUS_Y;
 	var Z = CM_TORUS_Z;
-	var rayx = CM_RAY_X1;
-	var rayy = CM_RAY_Y1;
-	var rayz = CM_RAY_Z1;
+	var rayx = ray[CM_RAY.X1];
+	var rayy = ray[CM_RAY.Y1];
+	var rayz = ray[CM_RAY.Z1];
 	var x1 = rayx - X;
 	var y1 = rayy - Y;
 	var z1 = rayz - Z;
-	var dx = CM_RAY_X2 - rayx;
-	var dy = CM_RAY_Y2 - rayy;
-	var dz = CM_RAY_Z2 - rayz;
+	var dx = ray[CM_RAY.X2] - rayx;
+	var dy = ray[CM_RAY.Y2] - rayy;
+	var dz = ray[CM_RAY.Z2] - rayz;
 	var nx = CM_TORUS_NX;
 	var ny = CM_TORUS_NY;
 	var nz = CM_TORUS_NZ;
@@ -65,10 +62,10 @@ function cm_torus_cast_ray(torus, ray)
 	if (n > p) return ray; //If the new distance estimate is larger than the previous one, the ray must have missed a close point and is moving away from the object 
 	
 	t /= l;
-	if (t > CM_RAY_T){return ray;}
-	var itsX = lerp(CM_RAY_X1, CM_RAY_X2, t);
-	var itsY = lerp(CM_RAY_Y1, CM_RAY_Y2, t);
-	var itsZ = lerp(CM_RAY_Z1, CM_RAY_Z2, t);
+	if (t > ray[CM_RAY.T]){return ray;}
+	var itsX = lerp(ray[CM_RAY.X1], ray[CM_RAY.X2], t);
+	var itsY = lerp(ray[CM_RAY.Y1], ray[CM_RAY.Y2], t);
+	var itsZ = lerp(ray[CM_RAY.Z1], ray[CM_RAY.Z2], t);
 	
 	var ringx = itsX - X;
 	var ringy = itsY - Y;
@@ -88,14 +85,14 @@ function cm_torus_cast_ray(torus, ray)
 	var n = point_distance_3d(itsX, itsY, itsZ, ringx, ringy, ringz);
 	if (n == 0) return ray;
 	
-	CM_RAY_T = t;
-	CM_RAY_HIT = true;
-	CM_RAY_HITX = itsX;
-	CM_RAY_HITY = itsY;
-	CM_RAY_HITZ = itsZ;
-	CM_RAY_NX = (itsX - ringx) / n;
-	CM_RAY_NY = (itsY - ringy) / n;
-	CM_RAY_NZ = (itsZ - ringz) / n;
-	CM_RAY_OBJECT = torus;
+	ray[@ CM_RAY.T] = t;
+	ray[@ CM_RAY.HIT] = true;
+	ray[@ CM_RAY.X] = itsX;
+	ray[@ CM_RAY.Y] = itsY;
+	ray[@ CM_RAY.Z] = itsZ;
+	ray[@ CM_RAY.NX] = (itsX - ringx) / n;
+	ray[@ CM_RAY.NY] = (itsY - ringy) / n;
+	ray[@ CM_RAY.NZ] = (itsZ - ringz) / n;
+	ray[@ CM_RAY.OBJECT] = torus;
 	return ray;
 }

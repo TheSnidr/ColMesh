@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__cmi_get_diskcoord",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__cmi_spatialhash_get_key",
   "isCompatibility":false,
   "isDnD":false,

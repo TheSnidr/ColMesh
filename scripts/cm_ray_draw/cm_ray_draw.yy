@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_ray_draw",
   "isCompatibility":false,
   "isDnD":false,

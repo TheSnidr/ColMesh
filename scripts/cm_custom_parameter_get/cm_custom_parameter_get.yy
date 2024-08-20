@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_custom_parameter_get",
   "isCompatibility":false,
   "isDnD":false,

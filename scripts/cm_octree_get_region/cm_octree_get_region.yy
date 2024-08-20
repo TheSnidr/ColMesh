@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_octree_get_region",
   "isCompatibility":false,
   "isDnD":false,

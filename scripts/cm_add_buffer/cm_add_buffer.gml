@@ -6,7 +6,11 @@ function cm_add_buffer(container, buffer, bytes_per_vertex = 36, matrix = undefi
 	*/
 	var vertnum = buffer_get_size(buffer) / bytes_per_vertex;
 	var v = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-	var n = smoothnormals ? [[0, 0, 0], [0, 0, 0], [0, 0, 0]] : undefined;
+	var n = smoothnormals ? [[0, 0, 0], [0, 0, 0], [0, 0, 0]] : [0, 0, 0];
+	var normalmatrix = undefined;
+	if (is_array(matrix)){
+		normalmatrix = cm_matrix_transpose(cm_matrix_invert_orientation(matrix));
+	}
 	
 	cm_debug_message($"Script cm_add_buffer: Attempting to load buffer containing {vertnum div 3} triangles");
 	
@@ -28,8 +32,8 @@ function cm_add_buffer(container, buffer, bytes_per_vertex = 36, matrix = undefi
 				n[j][1] = buffer_read(buffer, buffer_f32);
 				n[j][2] = buffer_read(buffer, buffer_f32);
 				
-				if (is_array(matrix)){
-					var _n = matrix_transform_vertex(matrix, n[j][0], n[j][1], n[j][2], 0);
+				if (is_array(normalmatrix)){
+					var _n = matrix_transform_vertex(normalmatrix, n[j][0], n[j][1], n[j][2], 0);
 					var l = point_distance_3d(0, 0, 0, _n[0], _n[1], _n[2]);
 					n[j][0] = _n[0] / l;
 					n[j][1] = _n[1] / l;

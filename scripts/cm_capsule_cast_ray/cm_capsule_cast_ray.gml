@@ -1,11 +1,11 @@
-function cm_capsule_cast_ray(capsule, ray)
+function cm_capsule_cast_ray(capsule, ray, mask = ray[CM_RAY.MASK])
 {
 	/*
 		Source:
 		Inigo Quilez, 2016
 		https://www.shadertoy.com/view/Xt3SzX
 	*/
-	if (CM_RAY_MASK != 0 && (CM_RAY_MASK & CM_CAPSULE_GROUP) == 0){return ray;}
+	if (mask != 0 && (mask & CM_CAPSULE_GROUP) == 0){return ray;}
 	
 	var x1 = CM_CAPSULE_X1;
 	var y1 = CM_CAPSULE_Y1;
@@ -14,12 +14,12 @@ function cm_capsule_cast_ray(capsule, ray)
 	var y2 = CM_CAPSULE_Y2;
 	var z2 = CM_CAPSULE_Z2;
 	var R  = CM_CAPSULE_R;
-	var rox = CM_RAY_X1;
-	var roy = CM_RAY_Y1;
-	var roz = CM_RAY_Z1;
-	var rdx = CM_RAY_X2 - rox;
-	var rdy = CM_RAY_Y2 - roy;
-	var rdz = CM_RAY_Z2 - roz;
+	var rox = ray[CM_RAY.X1];
+	var roy = ray[CM_RAY.Y1];
+	var roz = ray[CM_RAY.Z1];
+	var rdx = ray[CM_RAY.X2] - rox;
+	var rdy = ray[CM_RAY.Y2] - roy;
+	var rdz = ray[CM_RAY.Z2] - roz;
 	var bax = x2 - x1;
 	var bay = y2 - y1;
 	var baz = z2 - z1;
@@ -56,21 +56,21 @@ function cm_capsule_cast_ray(capsule, ray)
 		h = b * b - c;
 		if (h > 0) t = - b - sqrt(h);
 	}
-	if (t < 0 || t > CM_RAY_T * rayLen){return ray;}
+	if (t < 0 || t > ray[CM_RAY.T] * rayLen){return ray;}
 	
 	var itsX = rox + rdx * t;
 	var itsY = roy + rdy * t;
 	var itsZ = roz + rdz * t;
 	var n = clamp(dot_product_3d(itsX - x1, itsY - y1, itsZ - z1, bax, bay, baz) / baba, 0, 1);
 	
-	CM_RAY_T = t / rayLen;
-	CM_RAY_HIT = true;
-	CM_RAY_HITX = itsX;
-	CM_RAY_HITY = itsY;
-	CM_RAY_HITZ = itsZ;
-	CM_RAY_NX = (itsX - lerp(x1, x2, n)) / R;
-	CM_RAY_NY = (itsY - lerp(x1, x2, n)) / R;
-	CM_RAY_NZ = (itsZ - lerp(x1, x2, n)) / R;
-	CM_RAY_OBJECT = capsule;
+	ray[@ CM_RAY.T] = t / rayLen;
+	ray[@ CM_RAY.HIT] = true;
+	ray[@ CM_RAY.X] = itsX;
+	ray[@ CM_RAY.Y] = itsY;
+	ray[@ CM_RAY.Z] = itsZ;
+	ray[@ CM_RAY.NX] = (itsX - lerp(x1, x2, n)) / R;
+	ray[@ CM_RAY.NY] = (itsY - lerp(x1, x2, n)) / R;
+	ray[@ CM_RAY.NZ] = (itsZ - lerp(x1, x2, n)) / R;
+	ray[@ CM_RAY.OBJECT] = capsule;
 	return ray;
 }

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_quadtree_cast_ray",
   "isCompatibility":false,
   "isDnD":false,

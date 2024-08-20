@@ -6,5 +6,7 @@ function cm_load(filename)
 	var str = ini_read_string("Colmesh v2.0", "By TheSnidr, 2023", "");
 	ini_close();
 	
+	if (str == "") return undefined;
+	
 	return json_parse(str);
 }

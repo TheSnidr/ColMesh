@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_disk_cast_ray",
   "isCompatibility":false,
   "isDnD":false,

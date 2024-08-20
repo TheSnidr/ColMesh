@@ -1,10 +1,18 @@
 //-----------------------------------------------------
 //	Create a new colmesh for the level
 globalvar levelColmesh;
-//levelColmesh = cm_octree(-1000, -1000, -1000, room_width + 2000, 4, 10);
-//levelColmesh = cm_quadtree(-1000, -1000, -1000, room_width + 2000, 5, 10);
-levelColmesh = cm_spatialhash(150);
+//levelColmesh = cm_octree(100);
+//levelColmesh = cm_quadtree(100);
+//levelColmesh = cm_spatialhash(100);
 //levelColmesh = cm_list();
+
+levelColmesh = cm_load("ColMeshCache.ini");
+if (is_undefined(levelColmesh))
+{
+    levelColmesh = cm_octree(regionsize);
+    cm_add_obj(levelColmesh, "Level.obj");
+    cm_save(levelColmesh, "ColMeshCache.ini");
+}
 
 //-----------------------------------------------------
 //	Load level geometry from obj and add it to the levelColmesh
@@ -13,7 +21,7 @@ cm_add_obj(levelColmesh, "ColMesh Demo/Demo1Level.obj", matrix, true);
 
 //-----------------------------------------------------
 //  Load tree model and add 10 copies of it to the level
-var treeMesh = cm_spatialhash(30);
+var treeMesh = cm_spatialhash(50);
 var matrix = matrix_build(0, 0, 0, -90, 0, 0, 25, - 25, 25);
 cm_add_obj(treeMesh, "ColMesh Demo/SmallTreeLowPoly.obj", matrix, true);
 repeat 10
@@ -21,7 +29,7 @@ repeat 10
 	var xx = random(room_width);
 	var yy = random(room_height);
 	var ray = cm_cast_ray(levelColmesh, cm_ray(xx, yy, 1000, xx, yy, -1000));
-	var zz = CM_RAY_HITZ;
+	var zz = cm_ray_get_z(ray);
 	var scale = .8 + random(.4);
 	cm_add(levelColmesh, cm_dynamic(treeMesh, matrix_build(xx, yy, zz, 0, 0, random(360), scale, scale, scale), false));
 }
@@ -46,10 +54,13 @@ yup = 0;
 zup = 1;
 ground = false;
 charMat = matrix_build(x, y, z, 0, 0, 0, 1, 1, height);
+slopeAngle = 46;
+precision = 5;
+mask = CM_GROUP_SOLID;
 
 //-----------------------------------------------------
 //	Create a collider for the player
-collider = cm_collider(x, y, z, xup, yup, zup, radius, height, 46, 5);
+collider = cm_collider(x, y, z, xup, yup, zup, radius, height, slopeAngle, precision, mask);
 
 //-----------------------------------------------------
 //	Enable 3D projection

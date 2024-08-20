@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__cmi_capsule_get_capsule_ref",
   "isCompatibility":false,
   "isDnD":false,

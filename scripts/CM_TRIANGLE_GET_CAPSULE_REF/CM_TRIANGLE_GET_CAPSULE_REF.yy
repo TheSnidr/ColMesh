@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CM_TRIANGLE_GET_CAPSULE_REF",
   "isCompatibility":false,
   "isDnD":false,

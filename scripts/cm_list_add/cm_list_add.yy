@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_list_add",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,14 +1,14 @@
-function cm_box_cast_ray(box, ray)
+function cm_box_cast_ray(box, ray, mask = ray[CM_RAY.MASK])
 {
 	/*
 		A supplementary function, not meant to be used by itself.
 		Used by colmesh.castRay
 	*/
-	if (CM_RAY_MASK != 0 && (CM_RAY_MASK & CM_BOX_GROUP) == 0){return ray;}
+	if (mask != 0 && (mask & CM_BOX_GROUP) == 0){return ray;}
 	
 	var M = CM_BOX_M;
 	var I = CM_BOX_I;
-	var T = CM_RAY_T;
+	var T = ray[CM_RAY.T];
 	
 	//Algorithm created by TheSnidr
 	var o = matrix_transform_vertex(I, ray[0], ray[1], ray[2]);
@@ -29,15 +29,15 @@ function cm_box_cast_ray(box, ray)
 			{
 				var n = s / point_distance_3d(0, 0, 0, M[0], M[1], M[2]);
 				var p = matrix_transform_vertex(M, s, itsY, itsZ);
-				CM_RAY_T = t;
-				CM_RAY_HIT = true;
-				CM_RAY_HITX = p[0];
-				CM_RAY_HITY = p[1];
-				CM_RAY_HITZ = p[2];
-				CM_RAY_NX = M[0] * n;
-				CM_RAY_NY = M[1] * n;
-				CM_RAY_NZ = M[2] * n;
-				CM_RAY_OBJECT = box;
+				ray[@ CM_RAY.T] = t;
+				ray[@ CM_RAY.HIT] = true;
+				ray[@ CM_RAY.X] = p[0];
+				ray[@ CM_RAY.Y] = p[1];
+				ray[@ CM_RAY.Z] = p[2];
+				ray[@ CM_RAY.NX] = M[0] * n;
+				ray[@ CM_RAY.NY] = M[1] * n;
+				ray[@ CM_RAY.NZ] = M[2] * n;
+				ray[@ CM_RAY.OBJECT] = box;
 				return ray;
 			}
 		}
@@ -54,15 +54,15 @@ function cm_box_cast_ray(box, ray)
 			{
 				var n = s / point_distance_3d(0, 0, 0, M[4], M[5], M[6]);
 				var p = matrix_transform_vertex(M, itsX, s, itsZ);
-				CM_RAY_T = t;
-				CM_RAY_HIT = true;
-				CM_RAY_HITX = p[0];
-				CM_RAY_HITY = p[1];
-				CM_RAY_HITZ = p[2];
-				CM_RAY_NX = M[4] * n;
-				CM_RAY_NY = M[5] * n;
-				CM_RAY_NZ = M[6] * n;
-				CM_RAY_OBJECT = box;
+				ray[@ CM_RAY.T] = t;
+				ray[@ CM_RAY.HIT] = true;
+				ray[@ CM_RAY.X] = p[0];
+				ray[@ CM_RAY.Y] = p[1];
+				ray[@ CM_RAY.Z] = p[2];
+				ray[@ CM_RAY.NX] = M[4] * n;
+				ray[@ CM_RAY.NY] = M[5] * n;
+				ray[@ CM_RAY.NZ] = M[6] * n;
+				ray[@ CM_RAY.OBJECT] = box;
 				return ray;
 			}
 		}
@@ -79,15 +79,15 @@ function cm_box_cast_ray(box, ray)
 			{
 				var n = s / point_distance_3d(0, 0, 0, M[8], M[9], M[10]);
 				var p = matrix_transform_vertex(M, itsX, itsY, s);
-				CM_RAY_T = t;
-				CM_RAY_HIT = true;
-				CM_RAY_HITX = p[0];
-				CM_RAY_HITY = p[1];
-				CM_RAY_HITZ = p[2];
-				CM_RAY_NX = M[8] * n;
-				CM_RAY_NY = M[9] * n;
-				CM_RAY_NZ = M[10] * n;
-				CM_RAY_OBJECT = box;
+				ray[@ CM_RAY.T] = t;
+				ray[@ CM_RAY.HIT] = true;
+				ray[@ CM_RAY.X] = p[0];
+				ray[@ CM_RAY.Y] = p[1];
+				ray[@ CM_RAY.Z] = p[2];
+				ray[@ CM_RAY.NX] = M[8] * n;
+				ray[@ CM_RAY.NY] = M[9] * n;
+				ray[@ CM_RAY.NZ] = M[10] * n;
+				ray[@ CM_RAY.OBJECT] = box;
 				return ray;
 			}
 		}

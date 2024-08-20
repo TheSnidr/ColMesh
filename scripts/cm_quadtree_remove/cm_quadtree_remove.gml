@@ -1,40 +1,37 @@
 function cm_quadtree_remove(quadtree, object)
 {
-	var aabb = CM_QUADTREE_AABB;
-	var AABB = cm_get_aabb(object);
-	if (AABB[0] > aabb[3] || AABB[1] > aabb[4] || AABB[2] > aabb[5] || AABB[3] < aabb[0] || AABB[4] < aabb[1] || AABB[5] < aabb[2]) return false;
+	var oct_aabb = CM_QUADTREE_AABB;
+	var obj_aabb = cm_get_aabb(object);
 	
-	var rsize = CM_QUADTREE_REGIONSIZE;
-	var maxobjects = CM_QUADTREE_MAXOBJECTS;
-	var subdivisions = CM_QUADTREE_MAXSUBDIVS;
+	//Exit conditions
+	if (obj_aabb[0] > oct_aabb[3] || obj_aabb[1] > oct_aabb[4] || obj_aabb[3] < oct_aabb[0] || obj_aabb[4] < oct_aabb[1]) return false;
+	if (!cm_list_remove(CM_QUADTREE_OBJECTLIST, object)) return false;
+	if (!CM_QUADTREE_SUBDIVIDED) return false;
 	
-	var x1 = (AABB[0] - aabb[0] > rsize);
-	var y1 = (AABB[1] - aabb[1] > rsize);
-	var x2 = (AABB[3] - aabb[0] > rsize);
-	var y2 = (AABB[4] - aabb[1] > rsize);
+	var rsize = CM_QUADTREE_SIZE / 2;
+	var x1 = (obj_aabb[0] - oct_aabb[0] > rsize);
+	var y1 = (obj_aabb[1] - oct_aabb[1] > rsize);
+	var x2 = (obj_aabb[3] - oct_aabb[0] > rsize);
+	var y2 = (obj_aabb[4] - oct_aabb[1] > rsize);
 	for (var xx = x1; xx <= x2; ++xx)
 	{
 		for (var yy = y1; yy <= y2; ++yy)
 		{
-			var ind = CM_ARGS_QUADTREE.CHILD1 + xx + 2 * yy;
+			var ind = CM_QUADTREE.CHILD1 + xx + 2 * yy;
 			var child = quadtree[ind];
 			if (!is_array(child)) continue;
-			
-			cm_remove(child, object);
-			if (child[CM_TYPE] == CM_OBJECTS.LIST)
+				
+			//Remove the object from the child
+			cm_quadtree_remove(child, object);
+				
+			//If the child is empty, remove it from this quadtree
+			if (child[CM_QUADTREE.OBJECTLIST][CM_LIST.NEGATIVESIZE] == 0)
 			{
-				if (array_length(child) == CM_LIST_NUM) // If the child list is empty
-				{
-					quadtree[ind] = -1;
-				}
-			}
-			else if (!is_array(child[CM_ARGS_QUADTREE.CHILD1]) 
-					&& !is_array(child[CM_ARGS_QUADTREE.CHILD2]) 
-					&& !is_array(child[CM_ARGS_QUADTREE.CHILD3]) 
-					&& !is_array(child[CM_ARGS_QUADTREE.CHILD4])){
-				//If the child octree is empty, delete it
-				quadtree[ind] = -1;
+				quadtree[@ ind] = undefined;
+				continue;
 			}
 		}
 	}
+	
+	__cmi_quadtree_prune(quadtree);
 }

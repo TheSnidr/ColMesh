@@ -5,7 +5,7 @@ function cm_spatialhash_get_region(spatialhash, AABB)
 	var aabb = CM_SPATIALHASH_AABB;
 	if (is_undefined(aabb))
 	{
-		region[CM_ARGS_LIST.NEGATIVESIZE] = 0;
+		region[CM_LIST.NEGATIVESIZE] = 0;
 		return region;
 	}
 	var regionsize = CM_SPATIALHASH_REGIONSIZE;
@@ -36,6 +36,6 @@ function cm_spatialhash_get_region(spatialhash, AABB)
 		}
 	}
 	size = array_unique_ext(region, 0, size);
-	region[CM_ARGS_LIST.NEGATIVESIZE] = CM_LIST_NUM - size;
+	region[CM_LIST.NEGATIVESIZE] = CM_LIST_NUM - size;
 	return region;
 }

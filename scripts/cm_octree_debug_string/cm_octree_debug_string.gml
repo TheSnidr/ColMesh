@@ -6,22 +6,23 @@ function cm_octree_debug_string(octree)
 	{
 		leaves = 0;
 	}
-	++ calldepth;
 	
-	var i = CM_ARGS_OCTREE.CHILD1;
-	repeat 8
+	if (CM_OCTREE_SUBDIVIDED)
 	{
-		var child = octree[i++];
-		if (!is_array(child)) continue;
-		if (child[CM_TYPE] == CM_OBJECTS.LIST)
+		++ calldepth;
+		var i = CM_OCTREE.CHILD1;
+		repeat 8
 		{
-			++ leaves;
-			continue;
+			var child = octree[i++];
+			if (!is_array(child)) continue;
+			cm_octree_debug_string(child);
 		}
-		cm_octree_debug_string(child);
+		-- calldepth;
+	}
+	else
+	{
+		++leaves;
 	}
 	
-	-- calldepth;
-	
-	return $"[Octree: Min region size: {2 * CM_OCTREE_REGIONSIZE / (1 << CM_OCTREE_MAXSUBDIVS)}, Max objects: {CM_OCTREE_MAXOBJECTS}, Leaf regions: {leaves}, AABB: {CM_OCTREE_AABB}";
+	return $"[Octree: Min region size: {CM_OCTREE_REGIONSIZE}, Max objects: {CM_OCTREE_MAXOBJECTS}, Leaf regions: {leaves}, AABB: {CM_OCTREE_AABB}";
 }

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__cmi_dynamic_update_aabb",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_cylinder_displace",
   "isCompatibility":false,
   "isDnD":false,

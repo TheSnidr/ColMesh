@@ -1,4 +1,4 @@
-enum CM_ARGS_BOX
+enum CM_BOX
 {
 	TYPE, 
 	GROUP,
@@ -7,11 +7,11 @@ enum CM_ARGS_BOX
 	NUM
 }
 
-#macro CM_BOX_BEGIN var box = array_create(CM_ARGS_BOX.NUM, CM_OBJECTS.BOX)
-#macro CM_BOX_TYPE  box[@ CM_ARGS_BOX.TYPE]
-#macro CM_BOX_GROUP box[@ CM_ARGS_BOX.GROUP]
-#macro CM_BOX_M		box[@ CM_ARGS_BOX.M]
-#macro CM_BOX_I		box[@ CM_ARGS_BOX.I]
+#macro CM_BOX_BEGIN var box = array_create(CM_BOX.NUM, CM_OBJECTS.BOX)
+#macro CM_BOX_TYPE  box[@ CM_BOX.TYPE]
+#macro CM_BOX_GROUP box[@ CM_BOX.GROUP]
+#macro CM_BOX_M		box[@ CM_BOX.M]
+#macro CM_BOX_I		box[@ CM_BOX.I]
 #macro CM_BOX_END	return box
 
 function cm_box(M, group = CM_GROUP_SOLID)

@@ -1,4 +1,4 @@
-function cm_spatialhash_cast_ray(spatialhash, ray)
+function cm_spatialhash_cast_ray(spatialhash, ray, mask = ray[CM_RAY.MASK])
 {
 	var rayCastHasBeenDone = CM_RAYMAP[CM_RECURSION];
 	if (rayCastHasBeenDone < 0)
@@ -9,12 +9,12 @@ function cm_spatialhash_cast_ray(spatialhash, ray)
 	var map = CM_SPATIALHASH_MAP;
 	var aabb = cm_spatialhash_get_aabb(spatialhash);
 	var regionsize = CM_SPATIALHASH_REGIONSIZE;
-	var lox = CM_RAY_X1;
-	var loy = CM_RAY_Y1;
-	var loz = CM_RAY_Z1;
-	var ldx = CM_RAY_X2 - lox;
-	var ldy = CM_RAY_Y2 - loy;
-	var ldz = CM_RAY_Z2 - loz;
+	var lox = ray[CM_RAY.X1];
+	var loy = ray[CM_RAY.Y1];
+	var loz = ray[CM_RAY.Z1];
+	var ldx = ray[CM_RAY.X2] - lox;
+	var ldy = ray[CM_RAY.Y2] - loy;
+	var ldz = ray[CM_RAY.Z2] - loz;
 	var idx = (ldx == 0) ? 0 : 1 / ldx;
 	var idy = (ldy == 0) ? 0 : 1 / ldy;
 	var idz = (ldz == 0) ? 0 : 1 / ldz;
@@ -33,7 +33,7 @@ function cm_spatialhash_cast_ray(spatialhash, ray)
 	++ CM_RECURSION;
 	while (t < 1)
 	{
-		if (CM_RAY_T < t) break;
+		if (ray[CM_RAY.T] < t) break;
 		var region = map[$ key];
 		
 		var tMaxX = - frac(currX) * idx;
@@ -85,7 +85,7 @@ function cm_spatialhash_cast_ray(spatialhash, ray)
 			var object = region[--i];
 			if (is_undefined(rayCastHasBeenDone[? object]))
 			{
-				CM_CAST_RAY(object, ray);
+				CM_CAST_RAY(object, ray, mask);
 				rayCastHasBeenDone[? object] = true;
 			}
 		}

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__cmi_sphere_get_priority",
   "isCompatibility":false,
   "isDnD":false,

@@ -11,11 +11,8 @@ function cm_list_displace(list, collider, mask = collider[CM.MASK])
 		collider[@ CM.REGION] = list;
 	}
 		
-	if (CM_RECURSION >= CM_MAX_RECURSIONS)
-	{
-		//Exit the script if we've reached the recursion limit
-		return false;
-	}
+	//Exit the script if we've reached the recursion limit
+	if (CM_RECURSION >= CM_MAX_RECURSIONS) return false;
 	
 	//Get info from the collider
 	var precision = collider[CM.PRECISION];

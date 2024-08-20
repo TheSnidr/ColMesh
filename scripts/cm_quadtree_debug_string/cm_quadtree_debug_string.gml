@@ -6,22 +6,23 @@ function cm_quadtree_debug_string(quadtree)
 	{
 		leaves = 0;
 	}
-	++ calldepth;
 	
-	var i = CM_ARGS_QUADTREE.CHILD1;
-	repeat 4
+	if (CM_QUADTREE_SUBDIVIDED)
 	{
-		var child = quadtree[i++];
-		if (!is_array(child)) continue;
-		if (child[CM_TYPE] == CM_OBJECTS.LIST)
+		++ calldepth;
+		var i = CM_QUADTREE.CHILD1;
+		repeat 4
 		{
-			++ leaves;
-			continue;
+			var child = quadtree[i++];
+			if (!is_array(child)) continue;
+			cm_quadtree_debug_string(child);
 		}
-		cm_quadtree_debug_string(child);
+		-- calldepth;
+	}
+	else
+	{
+		++leaves;
 	}
 	
-	-- calldepth;
-	
-	return $"[Quadtree: Min region size: {2 * CM_QUADTREE_REGIONSIZE / (1 << CM_QUADTREE_MAXSUBDIVS)}, Max objects: {CM_QUADTREE_MAXOBJECTS}, Leaf regions: {leaves}, AABB: {CM_QUADTREE_AABB}";
+	return $"[Octree: Min region size: {CM_QUADTREE_REGIONSIZE}, Max objects: {CM_QUADTREE_MAXOBJECTS}, Leaf regions: {leaves}, AABB: {CM_QUADTREE_AABB}";
 }

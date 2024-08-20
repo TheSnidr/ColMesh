@@ -1,7 +1,6 @@
 /// @description
 size = 64;
 z = 32;
-colour = [.4, .5, .8];
 
 var M = matrix_build_identity();
 

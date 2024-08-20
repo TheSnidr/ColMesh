@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_spatialhash_get_region",
   "isCompatibility":false,
   "isDnD":false,

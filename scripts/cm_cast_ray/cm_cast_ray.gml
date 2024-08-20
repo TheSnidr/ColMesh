@@ -21,7 +21,7 @@ global.__cmi_cast_ray[CM_OBJECTS.BOX]				= cm_box_cast_ray;
 global.__cmi_cast_ray[CM_OBJECTS.DISK]				= cm_disk_cast_ray;
 global.__cmi_cast_ray[CM_OBJECTS.TORUS]				= cm_torus_cast_ray;
 #macro CM_CAST_RAY global.__cmi_cast_ray[object[CM_TYPE]]
-function cm_cast_ray(object, ray)
+function cm_cast_ray(object, ray, mask = ray[CM_RAY.MASK])
 {
-	return CM_CAST_RAY(object, ray);
+	return CM_CAST_RAY(object, ray, mask);
 }

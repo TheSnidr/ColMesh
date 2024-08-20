@@ -1,22 +1,22 @@
-function cm_sphere_cast_ray(sphere, ray)
+function cm_sphere_cast_ray(sphere, ray, mask = ray[CM_RAY.MASK])
 {
 	/*
 		A supplementary function, not meant to be used by itself.
 		Used by colmesh.castRay
 	*/
-	if (CM_RAY_MASK != 0 && (CM_RAY_MASK & CM_SPHERE_GROUP) == 0){return ray;}
+	if (mask != 0 && (mask & CM_SPHERE_GROUP) == 0){return ray;}
 	
 	var X = CM_SPHERE_X;
 	var Y = CM_SPHERE_Y;
 	var Z = CM_SPHERE_Z;
 	var R = CM_SPHERE_R;
 	
-	var rox = CM_RAY_X1;
-	var roy = CM_RAY_Y1;
-	var roz = CM_RAY_Z1;
-	var rdx = CM_RAY_X2 - rox;
-	var rdy = CM_RAY_Y2 - roy;
-	var rdz = CM_RAY_Z2 - roz;
+	var rox = ray[CM_RAY.X1];
+	var roy = ray[CM_RAY.Y1];
+	var roz = ray[CM_RAY.Z1];
+	var rdx = ray[CM_RAY.X2] - rox;
+	var rdy = ray[CM_RAY.Y2] - roy;
+	var rdz = ray[CM_RAY.Z2] - roz;
 	var dx = X - rox;
 	var dy = Y - roy;
 	var dz = Z - roz;
@@ -47,18 +47,18 @@ function cm_sphere_cast_ray(sphere, ray)
 		}
 	}
 	t /= v;
-	if (t > CM_RAY_T){return ray;}
+	if (t > ray[CM_RAY.T]){return ray;}
 	var itsX = rox + rdx * t;
 	var itsY = roy + rdy * t;
 	var itsZ = roz + rdz * t;
-	CM_RAY_T = t;
-	CM_RAY_HIT = true;
-	CM_RAY_HITX = itsX;
-	CM_RAY_HITY = itsY;
-	CM_RAY_HITZ = itsZ;
-	CM_RAY_NX = (itsX - X) / R;
-	CM_RAY_NY = (itsY - Y) / R;
-	CM_RAY_NZ = (itsZ - Z) / R;
-	CM_RAY_OBJECT = sphere;
+	ray[@ CM_RAY.T] = t;
+	ray[@ CM_RAY.HIT] = true;
+	ray[@ CM_RAY.X] = itsX;
+	ray[@ CM_RAY.Y] = itsY;
+	ray[@ CM_RAY.Z] = itsZ;
+	ray[@ CM_RAY.NX] = (itsX - X) / R;
+	ray[@ CM_RAY.NY] = (itsY - Y) / R;
+	ray[@ CM_RAY.NZ] = (itsZ - Z) / R;
+	ray[@ CM_RAY.OBJECT] = sphere;
 	return ray;
 }

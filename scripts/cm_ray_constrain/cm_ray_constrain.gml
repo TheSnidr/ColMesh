@@ -10,9 +10,9 @@ function cm_ray_constrain(ray, aabb)
 	var mx = (aabb[3] + aabb[0]) * .5;
 	var my = (aabb[4] + aabb[1]) * .5;
 	var mz = (aabb[5] + aabb[2]) * .5;
-	var x1 = (CM_RAY_X1 - mx) / sx;
-	var y1 = (CM_RAY_Y1 - my) / sy;
-	var z1 = (CM_RAY_Z1 - mz) / sz;
+	var x1 = (ray[CM_RAY.X1] - mx) / sx;
+	var y1 = (ray[CM_RAY.Y1] - my) / sy;
+	var z1 = (ray[CM_RAY.Z1] - mz) / sz;
 		
 	if (abs(x1) < 1 && abs(y1) < 1 && abs(z1) < 1)
 	{
@@ -20,9 +20,9 @@ function cm_ray_constrain(ray, aabb)
 		return 0;
 	}
 	
-	var x2 = (CM_RAY_X2 - mx) / sx;
-	var y2 = (CM_RAY_Y2 - my) / sy;
-	var z2 = (CM_RAY_Z2 - mz) / sz;
+	var x2 = (ray[CM_RAY.X2] - mx) / sx;
+	var y2 = (ray[CM_RAY.Y2] - my) / sy;
+	var z2 = (ray[CM_RAY.Z2] - mz) / sz;
 	
 	///////////////////////////////////////////////////////////////////
 	//Check X dimension

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_group_remove",
   "isCompatibility":false,
   "isDnD":false,

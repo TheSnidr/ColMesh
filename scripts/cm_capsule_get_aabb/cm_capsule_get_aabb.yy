@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_capsule_get_aabb",
   "isCompatibility":false,
   "isDnD":false,

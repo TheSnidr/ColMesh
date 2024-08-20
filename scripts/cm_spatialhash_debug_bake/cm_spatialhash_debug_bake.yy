@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_spatialhash_debug_bake",
   "isCompatibility":false,
   "isDnD":false,

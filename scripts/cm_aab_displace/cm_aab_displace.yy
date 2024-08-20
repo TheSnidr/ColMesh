@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_aab_displace",
   "isCompatibility":false,
   "isDnD":false,

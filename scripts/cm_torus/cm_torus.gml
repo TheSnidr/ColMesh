@@ -1,4 +1,4 @@
-enum CM_ARGS_TORUS
+enum CM_TORUS
 {
 	TYPE, 
 	GROUP,
@@ -13,17 +13,17 @@ enum CM_ARGS_TORUS
 	NUM
 }
 
-#macro CM_TORUS_BEGIN		var torus = array_create(CM_ARGS_TORUS.NUM, CM_OBJECTS.TORUS)
-#macro CM_TORUS_TYPE		torus[@ CM_ARGS_TORUS.TYPE]
-#macro CM_TORUS_GROUP		torus[@ CM_ARGS_TORUS.GROUP]
-#macro CM_TORUS_X			torus[@ CM_ARGS_TORUS.X]
-#macro CM_TORUS_Y			torus[@ CM_ARGS_TORUS.Y]
-#macro CM_TORUS_Z			torus[@ CM_ARGS_TORUS.Z]
-#macro CM_TORUS_NX			torus[@ CM_ARGS_TORUS.NX]
-#macro CM_TORUS_NY			torus[@ CM_ARGS_TORUS.NY]
-#macro CM_TORUS_NZ			torus[@ CM_ARGS_TORUS.NZ]
-#macro CM_TORUS_BIGRADIUS	torus[@ CM_ARGS_TORUS.BIGRADIUS]
-#macro CM_TORUS_SMALLRADIUS	torus[@ CM_ARGS_TORUS.SMALLRADIUS]
+#macro CM_TORUS_BEGIN		var torus = array_create(CM_TORUS.NUM, CM_OBJECTS.TORUS)
+#macro CM_TORUS_TYPE		torus[@ CM_TORUS.TYPE]
+#macro CM_TORUS_GROUP		torus[@ CM_TORUS.GROUP]
+#macro CM_TORUS_X			torus[@ CM_TORUS.X]
+#macro CM_TORUS_Y			torus[@ CM_TORUS.Y]
+#macro CM_TORUS_Z			torus[@ CM_TORUS.Z]
+#macro CM_TORUS_NX			torus[@ CM_TORUS.NX]
+#macro CM_TORUS_NY			torus[@ CM_TORUS.NY]
+#macro CM_TORUS_NZ			torus[@ CM_TORUS.NZ]
+#macro CM_TORUS_BIGRADIUS	torus[@ CM_TORUS.BIGRADIUS]
+#macro CM_TORUS_SMALLRADIUS	torus[@ CM_TORUS.SMALLRADIUS]
 #macro CM_TORUS_END			return torus
 
 function cm_torus(x, y, z, nx, ny, nz, bigradius, smallradius, group = CM_GROUP_SOLID)

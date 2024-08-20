@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__cmi_triangle_displace_sphere",
   "isCompatibility":false,
   "isDnD":false,

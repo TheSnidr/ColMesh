@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_vbuff_submit",
   "isCompatibility":false,
   "isDnD":false,

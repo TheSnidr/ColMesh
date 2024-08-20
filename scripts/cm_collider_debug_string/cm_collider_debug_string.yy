@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_collider_debug_string",
   "isCompatibility":false,
   "isDnD":false,

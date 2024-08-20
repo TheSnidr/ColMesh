@@ -1,4 +1,4 @@
-enum CM_ARGS_SPHERE
+enum CM_SPHERE
 {
 	TYPE, 
 	GROUP,
@@ -9,13 +9,13 @@ enum CM_ARGS_SPHERE
 	NUM
 }
 
-#macro CM_SPHERE_BEGIN	var sphere = array_create(CM_ARGS_SPHERE.NUM, CM_OBJECTS.SPHERE)
-#macro CM_SPHERE_TYPE	sphere[@ CM_ARGS_SPHERE.TYPE]
-#macro CM_SPHERE_GROUP	sphere[@ CM_ARGS_SPHERE.GROUP]
-#macro CM_SPHERE_X		sphere[@ CM_ARGS_SPHERE.X]
-#macro CM_SPHERE_Y		sphere[@ CM_ARGS_SPHERE.Y]
-#macro CM_SPHERE_Z		sphere[@ CM_ARGS_SPHERE.Z]
-#macro CM_SPHERE_R		sphere[@ CM_ARGS_SPHERE.R]
+#macro CM_SPHERE_BEGIN	var sphere = array_create(CM_SPHERE.NUM, CM_OBJECTS.SPHERE)
+#macro CM_SPHERE_TYPE	sphere[@ CM_SPHERE.TYPE]
+#macro CM_SPHERE_GROUP	sphere[@ CM_SPHERE.GROUP]
+#macro CM_SPHERE_X		sphere[@ CM_SPHERE.X]
+#macro CM_SPHERE_Y		sphere[@ CM_SPHERE.Y]
+#macro CM_SPHERE_Z		sphere[@ CM_SPHERE.Z]
+#macro CM_SPHERE_R		sphere[@ CM_SPHERE.R]
 #macro CM_SPHERE_END	return sphere
 
 function cm_sphere(x, y, z, radius, group = CM_GROUP_SOLID)

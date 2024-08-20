@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__cmi_triangle_get_priority_sphere",
   "isCompatibility":false,
   "isDnD":false,

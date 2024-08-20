@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_dynamic_update_container",
   "isCompatibility":false,
   "isDnD":false,

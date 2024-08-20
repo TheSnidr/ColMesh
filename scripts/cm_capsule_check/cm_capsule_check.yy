@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_capsule_check",
   "isCompatibility":false,
   "isDnD":false,

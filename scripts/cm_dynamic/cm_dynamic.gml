@@ -1,4 +1,4 @@
-enum CM_ARGS_DYNAMIC
+enum CM_DYNAMIC
 {
 	TYPE,
 	GROUP,
@@ -13,17 +13,17 @@ enum CM_ARGS_DYNAMIC
 	NUM
 }
 
-#macro CM_DYNAMIC_BEGIN		var dynamic = array_create(CM_ARGS_DYNAMIC.NUM, CM_OBJECTS.DYNAMIC)
-#macro CM_DYNAMIC_TYPE		dynamic[@ CM_ARGS_DYNAMIC.TYPE]
-#macro CM_DYNAMIC_GROUP		dynamic[@ CM_ARGS_DYNAMIC.GROUP]
-#macro CM_DYNAMIC_OBJECT	dynamic[@ CM_ARGS_DYNAMIC.OBJECT]
-#macro CM_DYNAMIC_M			dynamic[@ CM_ARGS_DYNAMIC.M]
-#macro CM_DYNAMIC_I			dynamic[@ CM_ARGS_DYNAMIC.I]
-#macro CM_DYNAMIC_P			dynamic[@ CM_ARGS_DYNAMIC.P]
-#macro CM_DYNAMIC_SCALE		dynamic[@ CM_ARGS_DYNAMIC.SCALE]
-#macro CM_DYNAMIC_MOVING	dynamic[@ CM_ARGS_DYNAMIC.MOVING]
-#macro CM_DYNAMIC_AABB		dynamic[@ CM_ARGS_DYNAMIC.AABB]
-#macro CM_DYNAMIC_AABBPREV	dynamic[@ CM_ARGS_DYNAMIC.AABBPREV]
+#macro CM_DYNAMIC_BEGIN		var dynamic = array_create(CM_DYNAMIC.NUM, CM_OBJECTS.DYNAMIC)
+#macro CM_DYNAMIC_TYPE		dynamic[@ CM_DYNAMIC.TYPE]
+#macro CM_DYNAMIC_GROUP		dynamic[@ CM_DYNAMIC.GROUP]
+#macro CM_DYNAMIC_OBJECT	dynamic[@ CM_DYNAMIC.OBJECT]
+#macro CM_DYNAMIC_M			dynamic[@ CM_DYNAMIC.M]
+#macro CM_DYNAMIC_I			dynamic[@ CM_DYNAMIC.I]
+#macro CM_DYNAMIC_P			dynamic[@ CM_DYNAMIC.P]
+#macro CM_DYNAMIC_SCALE		dynamic[@ CM_DYNAMIC.SCALE]
+#macro CM_DYNAMIC_MOVING	dynamic[@ CM_DYNAMIC.MOVING]
+#macro CM_DYNAMIC_AABB		dynamic[@ CM_DYNAMIC.AABB]
+#macro CM_DYNAMIC_AABBPREV	dynamic[@ CM_DYNAMIC.AABBPREV]
 #macro CM_DYNAMIC_UPDATE	cm_dynamic_set_matrix(dynamic, matrix, moving)
 #macro CM_DYNAMIC_END		return dynamic
 									

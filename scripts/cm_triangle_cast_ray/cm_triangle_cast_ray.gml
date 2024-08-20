@@ -1,17 +1,17 @@
-function cm_triangle_cast_ray(triangle, ray)
+function cm_triangle_cast_ray(triangle, ray, mask = ray[CM_RAY.MASK])
 {
 	/*
 		A supplementary function, not meant to be used by itself.
 		Used by colmesh.castRay
 	*/
-	if (CM_RAY_MASK != 0 && (CM_RAY_MASK & CM_TRIANGLE_GROUP) == 0){return ray;}
+	if (mask != 0 && (mask & CM_TRIANGLE_GROUP) == 0){return ray;}
 	
-	var ox = CM_RAY_X1;
-	var oy = CM_RAY_Y1;
-	var oz = CM_RAY_Z1;
-	var dx = CM_RAY_X2 - ox;
-	var dy = CM_RAY_Y2 - oy;
-	var dz = CM_RAY_Z2 - oz;
+	var ox = ray[CM_RAY.X1];
+	var oy = ray[CM_RAY.Y1];
+	var oz = ray[CM_RAY.Z1];
+	var dx = ray[CM_RAY.X2] - ox;
+	var dy = ray[CM_RAY.Y2] - oy;
+	var dz = ray[CM_RAY.Z2] - oz;
 	var nx = CM_TRIANGLE_NX;
 	var ny = CM_TRIANGLE_NY;
 	var nz = CM_TRIANGLE_NZ;
@@ -22,7 +22,7 @@ function cm_triangle_cast_ray(triangle, ray)
 	var v1z = CM_TRIANGLE_Z1;
 	var s = - sign(h);
 	var t = dot_product_3d(v1x - ox, v1y - oy, v1z - oz, nx, ny, nz) / h;
-	if (t < 0 || t > CM_RAY_T){return ray;} //Continue if the intersection is too far behind or in front of the ray
+	if (t < 0 || t > ray[CM_RAY.T]){return ray;} //Continue if the intersection is too far behind or in front of the ray
 	var itsX = ox + dx * t;
 	var itsY = oy + dy * t;
 	var itsZ = oz + dz * t;
@@ -85,9 +85,9 @@ function cm_triangle_cast_ray(triangle, ray)
 		w1 /= sum;
 		w2 /= sum;
 		w3 /= sum;
-		var n1 = CM_SMOOTHTRIANGLE_N3;
-		var n2 = CM_SMOOTHTRIANGLE_N1;
-		var n3 = CM_SMOOTHTRIANGLE_N2;
+		var n1 = CM_TRIANGLE_N3;
+		var n2 = CM_TRIANGLE_N1;
+		var n3 = CM_TRIANGLE_N2;
 		nx = dot_product_3d(n1[0], n2[0], n3[0], w1, w2, w3);
 		ny = dot_product_3d(n1[1], n2[1], n3[1], w1, w2, w3);
 		nz = dot_product_3d(n1[2], n2[2], n3[2], w1, w2, w3);
@@ -95,14 +95,14 @@ function cm_triangle_cast_ray(triangle, ray)
 	}
 	
 	//The line intersects the triangle. Save the triangle normal and intersection.
-	CM_RAY_T = t;
-	CM_RAY_HIT = true;
-	CM_RAY_HITX = itsX;
-	CM_RAY_HITY = itsY;
-	CM_RAY_HITZ = itsZ;
-	CM_RAY_NX = nx * s;
-	CM_RAY_NY = ny * s;
-	CM_RAY_NZ = nz * s;
-	CM_RAY_OBJECT = triangle;
+	ray[@ CM_RAY.T] = t;
+	ray[@ CM_RAY.HIT] = true;
+	ray[@ CM_RAY.X] = itsX;
+	ray[@ CM_RAY.Y] = itsY;
+	ray[@ CM_RAY.Z] = itsZ;
+	ray[@ CM_RAY.NX] = nx * s;
+	ray[@ CM_RAY.NY] = ny * s;
+	ray[@ CM_RAY.NZ] = nz * s;
+	ray[@ CM_RAY.OBJECT] = triangle;
 	return ray;
 }

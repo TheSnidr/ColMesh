@@ -1,4 +1,4 @@
-function cm_list_cast_ray(list, ray, mask = -1)
+function cm_list_cast_ray(list, ray, mask = ray[CM_RAY.MASK])
 {
 	var rayCastHasBeenDone = CM_RAYMAP[CM_RECURSION];
 	if (rayCastHasBeenDone < 0)
@@ -14,7 +14,7 @@ function cm_list_cast_ray(list, ray, mask = -1)
 		var object = list[i];
 		if (!is_undefined(rayCastHasBeenDone[? object])) continue;
 		
-		CM_CAST_RAY(object, ray);
+		CM_CAST_RAY(object, ray, mask);
 		rayCastHasBeenDone[? object] = true;
 	}
 	-- CM_RECURSION;

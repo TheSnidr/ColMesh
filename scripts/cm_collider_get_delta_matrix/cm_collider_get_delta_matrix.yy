@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_collider_get_delta_matrix",
   "isCompatibility":false,
   "isDnD":false,

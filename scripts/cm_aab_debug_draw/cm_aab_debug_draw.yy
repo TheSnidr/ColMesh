@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_aab_debug_draw",
   "isCompatibility":false,
   "isDnD":false,

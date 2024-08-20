@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_check_aabb",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"cm_capsule_get_closest_point",
   "isCompatibility":false,
   "isDnD":false,
