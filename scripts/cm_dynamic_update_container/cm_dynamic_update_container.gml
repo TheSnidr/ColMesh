@@ -3,20 +3,20 @@
 function cm_dynamic_update_container(dynamic, container)
 {
 	var AABB = CM_DYNAMIC_AABB;
-	var AABBPREV = CM_DYNAMIC_AABBPREV;
+	var pAABB = CM_DYNAMIC_AABBPREV;
 	
 	var containerType = container[CM_TYPE];
 	if (containerType == CM_OBJECTS.SPATIALHASH)
 	{
 		var rsize = container[CM_SPATIALHASH.REGIONSIZE];
-		if (floor(AABBPREV[0] / rsize) != floor(AABB[0] / rsize) ||
-			floor(AABBPREV[1] / rsize) != floor(AABB[1] / rsize) ||
-			floor(AABBPREV[2] / rsize) != floor(AABB[2] / rsize) ||
-			floor(AABBPREV[3] / rsize) != floor(AABB[3] / rsize) ||
-			floor(AABBPREV[4] / rsize) != floor(AABB[4] / rsize) ||
-			floor(AABBPREV[5] / rsize) != floor(AABB[5] / rsize))
+		if (floor(pAABB[0] / rsize) != floor(AABB[0] / rsize) ||
+			floor(pAABB[1] / rsize) != floor(AABB[1] / rsize) ||
+			floor(pAABB[2] / rsize) != floor(AABB[2] / rsize) ||
+			floor(pAABB[3] / rsize) != floor(AABB[3] / rsize) ||
+			floor(pAABB[4] / rsize) != floor(AABB[4] / rsize) ||
+			floor(pAABB[5] / rsize) != floor(AABB[5] / rsize))
 		{
-			CM_DYNAMIC_AABB = AABBPREV;
+			CM_DYNAMIC_AABB = pAABB;
 			cm_spatialhash_remove(container, dynamic);
 			CM_DYNAMIC_AABB = AABB;
 			cm_spatialhash_add(container, dynamic);
@@ -27,29 +27,30 @@ function cm_dynamic_update_container(dynamic, container)
 	{
 		var aabb = container[CM_QUADTREE.AABB];
 		var rsize = container[CM_QUADTREE.REGIONSIZE];
-		if (floor(AABBPREV[0] / rsize) != floor(AABB[0] / rsize) ||
-			floor(AABBPREV[1] / rsize) != floor(AABB[1] / rsize) ||
-			floor(AABBPREV[3] / rsize) != floor(AABB[3] / rsize) ||
-			floor(AABBPREV[4] / rsize) != floor(AABB[4] / rsize))
+		if (floor(pAABB[0] / rsize) != floor(AABB[0] / rsize) ||
+			floor(pAABB[1] / rsize) != floor(AABB[1] / rsize) ||
+			floor(pAABB[3] / rsize) != floor(AABB[3] / rsize) ||
+			floor(pAABB[4] / rsize) != floor(AABB[4] / rsize))
 		{
-			CM_DYNAMIC_AABB = AABBPREV;
-			cm_quadtree_remove(container, dynamic);
+			CM_DYNAMIC_AABB = pAABB;
+			cm_octree_remove(container, dynamic);
 			CM_DYNAMIC_AABB = AABB;
-			cm_quadtree_add(container, dynamic);
+			cm_octree_add(container, dynamic);
 		}
 		return true;
 	}
 	if (containerType == CM_OBJECTS.OCTREE)
 	{
+		var oAABB = container[CM_OCTREE.AABB];
 		var rsize = container[CM_OCTREE.REGIONSIZE];
-		if (floor(AABBPREV[0] / rsize) != floor(AABB[0] / rsize) ||
-			floor(AABBPREV[1] / rsize) != floor(AABB[1] / rsize) ||
-			floor(AABBPREV[2] / rsize) != floor(AABB[2] / rsize) ||
-			floor(AABBPREV[3] / rsize) != floor(AABB[3] / rsize) ||
-			floor(AABBPREV[4] / rsize) != floor(AABB[4] / rsize) ||
-			floor(AABBPREV[5] / rsize) != floor(AABB[5] / rsize))
+		if (floor((pAABB[0] - oAABB[0]) / rsize) != floor((AABB[0] - oAABB[0]) / rsize) ||
+			floor((pAABB[1] - oAABB[1]) / rsize) != floor((AABB[1] - oAABB[1]) / rsize) ||
+			floor((pAABB[2] - oAABB[2]) / rsize) != floor((AABB[2] - oAABB[2]) / rsize) ||
+			floor((pAABB[3] - oAABB[0]) / rsize) != floor((AABB[3] - oAABB[0]) / rsize) ||
+			floor((pAABB[4] - oAABB[1]) / rsize) != floor((AABB[4] - oAABB[1]) / rsize) ||
+			floor((pAABB[5] - oAABB[2]) / rsize) != floor((AABB[5] - oAABB[2]) / rsize))
 		{
-			CM_DYNAMIC_AABB = AABBPREV;
+			CM_DYNAMIC_AABB = pAABB;
 			cm_octree_remove(container, dynamic);
 			CM_DYNAMIC_AABB = AABB;
 			cm_octree_add(container, dynamic);

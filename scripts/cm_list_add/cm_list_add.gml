@@ -8,7 +8,7 @@ function cm_list_add(list, object)
 		return object;
 	}
 	
-	array_push(list, object);
+	list[@ CM_LIST_NUM + CM_LIST_SIZE] = object;
 	CM_LIST_NEGATIVESIZE -= 1;
 	return object;
 }

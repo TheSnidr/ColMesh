@@ -21,7 +21,7 @@ function cm_octree_remove(octree, object)
 		{
 			for (var zz = z1; zz <= z2; ++zz)
 			{
-				var ind = CM_OCTREE.CHILD1 + xx + 2 * yy + 4 * zz;
+				var ind = CM_OCTREE.CHILD1 + xx + 2 * yy + 4 * yy;
 				var child = octree[ind];
 				if (!is_array(child)) continue;
 				
