@@ -25,12 +25,12 @@ function cm_dynamic_update_container(dynamic, container)
 	}
 	if (containerType == CM_OBJECTS.QUADTREE)
 	{
-		var aabb = container[CM_QUADTREE.AABB];
+		var qAABB = container[CM_QUADTREE.AABB];
 		var rsize = container[CM_QUADTREE.REGIONSIZE];
-		if (floor(pAABB[0] / rsize) != floor(AABB[0] / rsize) ||
-			floor(pAABB[1] / rsize) != floor(AABB[1] / rsize) ||
-			floor(pAABB[3] / rsize) != floor(AABB[3] / rsize) ||
-			floor(pAABB[4] / rsize) != floor(AABB[4] / rsize))
+		if (floor((pAABB[0] - qAABB[0]) / rsize) != floor((AABB[0] - qAABB[0]) / rsize) ||
+			floor((pAABB[1] - qAABB[1]) / rsize) != floor((AABB[1] - qAABB[1]) / rsize) ||
+			floor((pAABB[3] - qAABB[0]) / rsize) != floor((AABB[3] - qAABB[0]) / rsize) ||
+			floor((pAABB[4] - qAABB[1]) / rsize) != floor((AABB[4] - qAABB[1]) / rsize))
 		{
 			CM_DYNAMIC_AABB = pAABB;
 			cm_octree_remove(container, dynamic);
