@@ -14,7 +14,7 @@ function cm_octree_get_region(octree, AABB)
 	//If the AABB is outside the octree, exit early
 	if (oct_aabb[0] > AABB[3] || oct_aabb[3] < AABB[0] || oct_aabb[1] > AABB[4] || oct_aabb[4] < AABB[1] || oct_aabb[2] > AABB[5] || oct_aabb[5] < AABB[2])
 	{
-		region[CM_LIST.NEGATIVESIZE] = 0;
+		region[CM_LIST.SIZE] = CM_LIST.NUM;
 		return region;
 	}
 	
@@ -25,7 +25,7 @@ function cm_octree_get_region(octree, AABB)
 	}
 	
 	++ calldepth;
-	var listsize = CM_LIST_NUM;
+	var listsize = CM_LIST.NUM;
 	var rsize = CM_OCTREE_SIZE / 2;
 	
 	var x1 = (AABB[0] - oct_aabb[0] > rsize);
@@ -44,8 +44,8 @@ function cm_octree_get_region(octree, AABB)
 				if (!is_array(child)) continue;
 				
 				var list = cm_octree_get_region(child, AABB);
-				var len = CM_LIST_SIZE;
-				array_copy(region, listsize, list, CM_LIST_NUM, len);
+				var len = list[CM_LIST.SIZE] - CM_LIST.NUM;
+				array_copy(region, listsize, list, CM_LIST.NUM, len);
 				listsize += len;
 			}
 		}
@@ -54,6 +54,6 @@ function cm_octree_get_region(octree, AABB)
 	{
 		listsize = array_unique_ext(region, 0, listsize);
 	}
-	region[CM_LIST.NEGATIVESIZE] = CM_LIST_NUM - listsize;
+	region[CM_LIST.SIZE] = listsize;
 	return region;
 }

@@ -3,8 +3,8 @@ function cm_quadtree_add(quadtree, object)
 	//If the object is an object list, add each element individually
 	if (object[CM_TYPE] == CM_OBJECTS.LIST)
 	{
-		var num = array_length(object);
-		for (var i = CM_LIST_NUM; i < num; ++i)
+		var num = object[CM_LIST.SIZE] - CM_LIST.NUM;
+		for (var i = CM_LIST.NUM; i < num; ++i)
 		{
 			cm_quadtree_add(quadtree, object[i]);
 		}
@@ -19,7 +19,7 @@ function cm_quadtree_add(quadtree, object)
 	var objectlist = CM_QUADTREE_OBJECTLIST;
 	var issubdivided = CM_QUADTREE_SUBDIVIDED;
 	var minregionsize = CM_QUADTREE_REGIONSIZE;
-	var contentnum = - objectlist[CM_LIST.NEGATIVESIZE];
+	var contentnum = objectlist[CM_LIST.SIZE] - CM_LIST.NUM;
 	var obj_aabb = cm_get_aabb(object);
 	
 	//If the object is entirely outside the quadtree, and this is not the root (ie. can't be expanded), exit the function.
@@ -96,7 +96,7 @@ function cm_quadtree_add(quadtree, object)
 		child[@ CM_QUADTREE.ISROOT] = false;
 		child[@ CM_QUADTREE.SUBDIVIDED] = true;
 		array_copy(child[CM_QUADTREE.AABB], 0, quad_aabb, 0, 6);
-		array_copy(child[CM_QUADTREE.OBJECTLIST], 0, objectlist, 0, CM_LIST_NUM - objectlist[CM_LIST.NEGATIVESIZE]);
+		array_copy(child[CM_QUADTREE.OBJECTLIST], 0, objectlist, 0, objectlist[CM_LIST.SIZE]);
 		for (var i = 0; i < 4; ++i)
 		{
 			child[@  CM_QUADTREE.CHILD1 + i] = quadtree[CM_QUADTREE.CHILD1 + i];

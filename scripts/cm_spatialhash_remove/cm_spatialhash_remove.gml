@@ -16,11 +16,11 @@ function cm_spatialhash_remove(spatialhash, object)
 			for (var zz = z0; zz <= z1; ++zz)
 			{
 				var key = __cmi_spatialhash_get_key(xx, yy, zz);
-				var list = map[$ key];
-				if (is_undefined(list)) continue;
+				var region = map[$ key];
+				if (is_undefined(region)) continue;
 				
-				cm_list_remove(list, object);
-				if (CM_LIST_SIZE == 0)
+				cm_list_remove(region, object);
+				if (region[CM_LIST.SIZE] <= CM_LIST.NUM)
 				{
 					struct_remove(map, key);
 				}

@@ -43,9 +43,9 @@ shader_reset();
 //-----------------------------------------------------
 //	Draw current region. Bake to vertex buffer if this hasn't been done
 var region = cm_get_region(levelColmesh, cm_collider_get_aabb(collider));
-var num = - region[CM_LIST.NEGATIVESIZE];
-array_resize(region, num + CM_LIST_NUM);
-if ((!array_equals(region, currentRegion) || bakedRegion < 0) && num > 0)
+var num = region[CM_LIST.SIZE];
+array_resize(region, num);
+if ((!array_equals(region, currentRegion) || bakedRegion < 0) && num > CM_LIST.NUM)
 {
 	array_resize(currentRegion, array_length(region));
 	array_copy(currentRegion, 0, region, 0, array_length(region));
@@ -55,7 +55,7 @@ if ((!array_equals(region, currentRegion) || bakedRegion < 0) && num > 0)
 	cm_vbuff_bake(currentRegion, bakedRegion);
 	cm_vbuff_end(bakedRegion);
 }
-if (num > 0)
+if (num > CM_LIST.NUM)
 {
 	cm_vbuff_submit(bakedRegion);
 }

@@ -14,7 +14,7 @@ function cm_quadtree_get_region(quadtree, AABB)
 	//If the AABB is outside the quadtree, exit early
 	if (quad_aabb[0] > AABB[3] || quad_aabb[3] < AABB[0] || quad_aabb[1] > AABB[4] || quad_aabb[4] < AABB[1])
 	{
-		region[CM_LIST.NEGATIVESIZE] = 0;
+		region[CM_LIST.SIZE] = CM_LIST.NUM;
 		return region;
 	}
 	
@@ -25,7 +25,7 @@ function cm_quadtree_get_region(quadtree, AABB)
 	}
 	
 	++ calldepth;
-	var listsize = CM_LIST_NUM;
+	var listsize = CM_LIST.NUM;
 	var rsize = CM_QUADTREE_SIZE / 2;
 	
 	var x1 = (AABB[0] - quad_aabb[0] > rsize);
@@ -40,8 +40,8 @@ function cm_quadtree_get_region(quadtree, AABB)
 			if (!is_array(child)) continue;
 				
 			var list = cm_quadtree_get_region(child, AABB);
-			var len = CM_LIST_SIZE;
-			array_copy(region, listsize, list, CM_LIST_NUM, len);
+			var len = CM_LIST_SIZE - CM_LIST.NUM;
+			array_copy(region, listsize, list, CM_LIST.NUM, len);
 			listsize += len;
 		}
 	}
@@ -49,6 +49,6 @@ function cm_quadtree_get_region(quadtree, AABB)
 	{
 		listsize = array_unique_ext(region, 0, listsize);
 	}
-	region[CM_LIST.NEGATIVESIZE] = CM_LIST_NUM - listsize;
+	region[CM_LIST.SIZE] = listsize;
 	return region;
 }

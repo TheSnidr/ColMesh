@@ -5,7 +5,7 @@ var default_function = function(container, object)
 	cm_debug_message("Function cm_add: Trying to add object to a primitive. The primitive is converted to a cm_list!");
 	var primitive = [];
 	array_copy(primitive, 0, container, 0, array_length(container));
-	array_resize(container, CM_LIST_NUM);
+	array_resize(container, CM_LIST.NUM);
 	container[0] = CM_OBJECTS.LIST;
 	cm_add(container, primitive);
 	cm_add(container, object);

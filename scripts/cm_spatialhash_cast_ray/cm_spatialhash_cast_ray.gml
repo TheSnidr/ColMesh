@@ -79,10 +79,9 @@ function cm_spatialhash_cast_ray(spatialhash, ray, mask = ray[CM_RAY.MASK])
 		if (is_undefined(region)) continue;
 		
 		//Loop through the objects in the region
-		var i = array_length(region);
-		repeat i - CM_LIST_NUM
+		for (var i = CM_LIST.NUM; i < region[CM_LIST.SIZE]; ++i)
 		{
-			var object = region[--i];
+			var object = region[i];
 			if (is_undefined(rayCastHasBeenDone[? object]))
 			{
 				CM_CAST_RAY(object, ray, mask);

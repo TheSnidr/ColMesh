@@ -3,8 +3,7 @@ function cm_spatialhash_add(spatialhash, object)
 	//If the object is an object list (which is what's created when loading a mesh), add each element individually
 	if (object[CM_TYPE] == CM_OBJECTS.LIST)
 	{
-		var num = array_length(object);
-		for (var i = CM_LIST_NUM; i < num; ++ i)
+		for (var i = CM_LIST.NUM; i < object[CM_LIST.SIZE]; ++ i)
 		{
 			if (!is_array(object[i])){continue;}
 			cm_spatialhash_add(spatialhash, object[i]);
@@ -28,14 +27,14 @@ function cm_spatialhash_add(spatialhash, object)
 			{
 				//if (!cm_intersects_cube(object, rsize * .5, (xx + .5) * rsize, (yy + .5) * rsize, (zz + .5) * rsize)) continue;
 				var key = __cmi_spatialhash_get_key(xx, yy, zz);
-				var list = map[$ key];
-				if (is_undefined(list))
+				var region = map[$ key];
+				if (is_undefined(region))
 				{
-					list = cm_list();
-					map[$ key] = list;
+					region = cm_list();
+					map[$ key] = region;
 				}
-				if (array_contains(list, object)) continue;
-				cm_list_add(list, object);
+				if (array_contains(region, object)) continue;
+				cm_list_add(region, object);
 			}
 		}
 	}

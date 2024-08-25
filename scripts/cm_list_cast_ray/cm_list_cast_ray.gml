@@ -7,9 +7,9 @@ function cm_list_cast_ray(list, ray, mask = ray[CM_RAY.MASK])
 		CM_RAYMAP[CM_RECURSION] = rayCastHasBeenDone;
 	}
 	
-	var num = CM_LIST_SIZE + CM_LIST_NUM;
+	var num = CM_LIST_SIZE;
 	++ CM_RECURSION;
-	for (var i = CM_LIST_NUM; i < num; i ++)
+	for (var i = CM_LIST.NUM; i < num; i ++)
 	{
 		var object = list[i];
 		if (!is_undefined(rayCastHasBeenDone[? object])) continue;

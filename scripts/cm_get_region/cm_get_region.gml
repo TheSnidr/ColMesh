@@ -5,12 +5,12 @@ var default_function = function(object, aabb)
 	static region = cm_list;
 	if (cm_check_aabb(object, aabb))
 	{
-		region[CM_LIST.NEGATIVESIZE] = -1;
+		region[CM_LIST.SIZE] = CM_LIST.NUM + 1;
 		region[CM_LIST.NUM] = object;
 	}
 	else
 	{
-		region[CM_LIST.NEGATIVESIZE] = 0;
+		region[CM_LIST.SIZE] = CM_LIST.NUM = 0;
 	}
 	return region;
 }

@@ -5,10 +5,9 @@
 
 function cm_list_debug_bake(list, vbuff, matrix, mask = 0, hrep = 1, vrep = 1, color = -1)
 {
-	var i = CM_LIST_NUM;
-	repeat (CM_LIST_SIZE)
+	for (var i = CM_LIST.NUM; i < list[CM_LIST.SIZE]; ++i)
 	{
-		var object = list[i++];
+		var object = list[i];
 		CM_VBUFF_BAKE(object, vbuff, matrix, mask, hrep, vrep, color);
 	}
 }

@@ -29,7 +29,7 @@ function cm_octree_remove(octree, object)
 				cm_octree_remove(child, object);
 				
 				//If the child is empty, remove it from this octree
-				if (child[CM_OCTREE.OBJECTLIST][CM_LIST.NEGATIVESIZE] == 0)
+				if (child[CM_OCTREE.OBJECTLIST][CM_LIST.SIZE] == CM_LIST.NUM)
 				{
 					octree[@ ind] = undefined;
 					continue;

@@ -26,12 +26,6 @@ global.cm_raymap = array_create(CM_MAX_RECURSIONS, -1);
 
 enum CM_OBJECTS
 {
-	//Colliders
-	COLLIDERCAPSULE,
-	COLLIDERCYLINDER, //unused for the moment
-	COLLIDERBOX,	  //unused for the moment
-	RAY,
-	
 	//Containers
 	DYNAMIC,
 	LIST,
@@ -39,6 +33,12 @@ enum CM_OBJECTS
 	QUADTREE,
 	OCTREE,
 	CONTAINERNUM,
+	
+	//Colliders
+	COLLIDERCAPSULE,
+	COLLIDERCYLINDER, //unused for the moment
+	COLLIDERBOX,	  //unused for the moment
+	RAY,
 	
 	//Primitives
 	FLSSTRIANGLE, //flat single-sided triangle

@@ -4,7 +4,7 @@ function cm_octree_add(octree, object)
 	if (object[CM_TYPE] == CM_OBJECTS.LIST)
 	{
 		var num = array_length(object);
-		for (var i = CM_LIST_NUM; i < num; ++i)
+		for (var i = CM_LIST.NUM; i < object[CM_LIST.SIZE]; ++i)
 		{
 			cm_octree_add(octree, object[i]);
 		}
@@ -19,7 +19,7 @@ function cm_octree_add(octree, object)
 	var objectlist = CM_OCTREE_OBJECTLIST;
 	var issubdivided = CM_OCTREE_SUBDIVIDED;
 	var minregionsize = CM_OCTREE_REGIONSIZE;
-	var contentnum = - objectlist[CM_LIST.NEGATIVESIZE];
+	var contentnum = objectlist[CM_LIST.SIZE] - CM_LIST.NUM;
 	var obj_aabb = cm_get_aabb(object);
 	
 	//If the object is entirely outside the octree, and this is not the root (ie. can't be expanded), exit the function.
@@ -98,7 +98,7 @@ function cm_octree_add(octree, object)
 		child[@ CM_OCTREE.ISROOT] = false;
 		child[@ CM_OCTREE.SUBDIVIDED] = true;
 		array_copy(child[CM_OCTREE.AABB], 0, oct_aabb, 0, 6);
-		array_copy(child[CM_OCTREE.OBJECTLIST], 0, objectlist, 0, CM_LIST_NUM - objectlist[CM_LIST.NEGATIVESIZE]);
+		array_copy(child[CM_OCTREE.OBJECTLIST], 0, objectlist, 0, objectlist[CM_LIST.SIZE]);
 		for (var i = 0; i < 8; ++i)
 		{
 			child[@  CM_OCTREE.CHILD1 + i] = octree[CM_OCTREE.CHILD1 + i];

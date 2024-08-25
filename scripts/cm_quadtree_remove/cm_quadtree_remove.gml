@@ -25,7 +25,7 @@ function cm_quadtree_remove(quadtree, object)
 			cm_quadtree_remove(child, object);
 				
 			//If the child is empty, remove it from this quadtree
-			if (child[CM_QUADTREE.OBJECTLIST][CM_LIST.NEGATIVESIZE] == 0)
+			if (child[CM_QUADTREE.OBJECTLIST][CM_LIST.SIZE] <= CM_LIST.NUM)
 			{
 				quadtree[@ ind] = undefined;
 				continue;
