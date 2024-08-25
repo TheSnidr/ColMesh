@@ -6,7 +6,8 @@ var default_function = function(container, object)
 	var primitive = [];
 	array_copy(primitive, 0, container, 0, array_length(container));
 	array_resize(container, CM_LIST.NUM);
-	container[0] = CM_OBJECTS.LIST;
+	container[@ CM_LIST.TYPE] = CM_OBJECTS.LIST;
+	container[@ CM_LIST.SIZE] = CM_LIST.NUM;
 	cm_add(container, primitive);
 	cm_add(container, object);
 	return object;

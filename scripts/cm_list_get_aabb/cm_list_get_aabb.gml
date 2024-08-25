@@ -1,11 +1,10 @@
 function cm_list_get_aabb(list)
 {
 	var AABB = array_create(6, 0);
-	var num = array_length(list);
-	for (var i = 2; i < num; ++i)
+	for (var i = CM_LIST.NUM; i < list[CM_LIST.SIZE]; ++i)
 	{
 		var aabb = cm_get_aabb(list[i]);
-		if (i == 2)
+		if (i == CM_LIST.NUM)
 		{
 			AABB = aabb;
 		}
