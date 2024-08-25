@@ -4,7 +4,7 @@ function cm_list_add(list, object)
 	if (object[CM_TYPE] == CM_OBJECTS.LIST)
 	{
 		var num = object[CM_LIST.SIZE] - CM_LIST.NUM;
-		array_copy(list, array_length(list), object, CM_LIST.NUM, num);
+		array_copy(list, list[CM_LIST.SIZE], object, CM_LIST.NUM, num);
 		list[@ CM_LIST.SIZE] += num;
 		return object;
 	}

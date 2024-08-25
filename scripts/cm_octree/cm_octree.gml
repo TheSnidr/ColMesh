@@ -42,6 +42,5 @@ function cm_octree(regionsize, maxobjectsperregion = 5)
 	CM_OCTREE_MAXOBJECTS = maxobjectsperregion;
 	CM_OCTREE_SUBDIVIDED = false;
 	CM_OCTREE_OBJECTLIST = cm_list();
-	CM_OCTREE_CUSTOM	 = undefined;
 	CM_OCTREE_END;
 }

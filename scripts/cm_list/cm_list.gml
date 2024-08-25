@@ -4,14 +4,12 @@ enum CM_LIST
 {
 	TYPE,
 	SIZE,
-	CUSTOM,
 	NUM
 }
 
 #macro CM_LIST_BEGIN		var list = array_create(CM_LIST.NUM, CM_OBJECTS.LIST)
 #macro CM_LIST_TYPE			list[@ CM_LIST.TYPE]
 #macro CM_LIST_SIZE			list[@ CM_LIST.SIZE]
-#macro CM_LIST_CUSTOM		list[@ CM_LIST.CUSTOM]
 #macro CM_LIST_END			return list
 
 /// @func cm_list([object1], [object2], ...)
@@ -19,7 +17,6 @@ function cm_list()
 {
 	CM_LIST_BEGIN;
 	CM_LIST_SIZE = CM_LIST.NUM;
-	CM_LIST_CUSTOM = undefined;
 	
 	var i = 0;
 	repeat (argument_count)

@@ -15,8 +15,6 @@ function cm_spatialhash_get_region(spatialhash, AABB)
 	var x1 = floor(min(AABB[3], aabb[3]) / regionsize);
 	var y1 = floor(min(AABB[4], aabb[4]) / regionsize);
 	var z1 = floor(min(AABB[5], aabb[5]) / regionsize);
-	var num = 0;
-	var size = CM_LIST.NUM;
 	for (var xx = x0; xx <= x1; ++xx)
 	{
 		for (var yy = y0; yy <= y1; ++yy)
@@ -27,14 +25,11 @@ function cm_spatialhash_get_region(spatialhash, AABB)
 				var list = map[$ key];
 				if (is_array(list))
 				{
-					var len = list[CM_LIST.SIZE] - CM_LIST.NUM;
-					array_copy(region, size, list, CM_LIST.NUM, len);
-					size += len;
-					++num;
+					cm_list_add(region, list);
 				}
 			}
 		}
 	}
-	region[CM_LIST.SIZE] = array_unique_ext(region, 0, size);
+	region[CM_LIST.SIZE] = array_unique_ext(region, 0, region[CM_LIST.SIZE]);
 	return region;
 }

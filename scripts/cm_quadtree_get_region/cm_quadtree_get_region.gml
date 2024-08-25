@@ -8,10 +8,10 @@ function cm_quadtree_get_region(quadtree, AABB)
 		region = cm_list();
 		regions[calldepth] = region;
 	}
-	var quad_aabb = CM_QUADTREE_AABB;
-	var issubdivided = CM_QUADTREE_SUBDIVIDED;
+	region[CM_LIST.SIZE] = CM_LIST.NUM;
 	
 	//If the AABB is outside the quadtree, exit early
+	var quad_aabb = CM_QUADTREE_AABB;
 	if (quad_aabb[0] > AABB[3] || quad_aabb[3] < AABB[0] || quad_aabb[1] > AABB[4] || quad_aabb[4] < AABB[1])
 	{
 		region[CM_LIST.SIZE] = CM_LIST.NUM;
@@ -19,15 +19,14 @@ function cm_quadtree_get_region(quadtree, AABB)
 	}
 	
 	//If the quadtree is entirely inside the AABB, return all objects in this quadtree
+	var issubdivided = CM_QUADTREE_SUBDIVIDED;
 	if (!issubdivided || (quad_aabb[0] >= AABB[0] && quad_aabb[1] >= AABB[1] && quad_aabb[3] <= AABB[3] && quad_aabb[4] <= AABB[4]))
 	{
 		return CM_QUADTREE_OBJECTLIST;
 	}
 	
 	++ calldepth;
-	var listsize = CM_LIST.NUM;
 	var rsize = CM_QUADTREE_SIZE / 2;
-	
 	var x1 = (AABB[0] - quad_aabb[0] > rsize);
 	var y1 = (AABB[1] - quad_aabb[1] > rsize);
 	var x2 = (AABB[3] - quad_aabb[0] > rsize);
@@ -37,18 +36,15 @@ function cm_quadtree_get_region(quadtree, AABB)
 		for (var yy = y1; yy <= y2; ++yy)
 		{
 			var child = quadtree[CM_QUADTREE.CHILD1 + xx + 2 * yy];
-			if (!is_array(child)) continue;
-				
-			var list = cm_quadtree_get_region(child, AABB);
-			var len = CM_LIST_SIZE - CM_LIST.NUM;
-			array_copy(region, listsize, list, CM_LIST.NUM, len);
-			listsize += len;
+			if (is_array(child))
+			{
+				cm_list_add(region, cm_octree_get_region(child, AABB));
+			}
 		}
 	}
 	if (-- calldepth == 0)
 	{
-		listsize = array_unique_ext(region, 0, listsize);
+		region[CM_LIST.SIZE] = array_unique_ext(region, 0, region[CM_LIST.SIZE]);
 	}
-	region[CM_LIST.SIZE] = listsize;
 	return region;
 }
