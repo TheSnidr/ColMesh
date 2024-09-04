@@ -32,7 +32,7 @@ function cm_torus_debug_draw(torus, tex = -1, color = undefined, mask = 0)
 	
 	var W = matrix_get(matrix_world);
 	var scale = point_distance_3d(0, 0, 0, W[0], W[1], W[2]);
-	cm_matrix_build_from_vector(cx, cy, cz, nx, ny, nz, R * scale, R * scale, R * scale, M);
+	cm_matrix_build_from_vector(cx, cy, cz, nx, ny, nz, R, R, R, M);
 		
 	if (shader_current() == -1)
 	{

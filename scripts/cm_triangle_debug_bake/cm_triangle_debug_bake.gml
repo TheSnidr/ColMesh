@@ -3,7 +3,7 @@
 	Useful for batching shapes together when debugging.
 */
 
-function cm_triangle_debug_bake(triangle, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 1, vRep = 1, color = undefined)
+function cm_triangle_debug_bake_wireframe(triangle, vbuff, matrix = matrix_build_identity(), mask = 0, color = undefined)
 {
 	if (mask > 0 && (mask & CM_TRIANGLE_GROUP) == 0){return false;}
 	if (is_undefined(color))

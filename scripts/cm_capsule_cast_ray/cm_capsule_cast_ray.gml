@@ -26,7 +26,7 @@ function cm_capsule_cast_ray(capsule, ray, mask = ray[CM_RAY.MASK])
 	var oax = rox - x1;
 	var oay = roy - y1;
 	var oaz = roz - z1;
-	var rayLen = point_distance_3d(ray[0], ray[1], ray[2], ray[3], ray[4], ray[5]);
+	var rayLen = point_distance_3d(0, 0, 0, rdx, rdy, rdz);
 	rdx /= rayLen;
 	rdy /= rayLen;
 	rdz /= rayLen;
@@ -55,6 +55,7 @@ function cm_capsule_cast_ray(capsule, ray, mask = ray[CM_RAY.MASK])
 		c = dot_product_3d(ocx, ocy, ocz, ocx, ocy, ocz) - R * R;
 		h = b * b - c;
 		if (h > 0) t = - b - sqrt(h);
+		else return ray;
 	}
 	if (t < 0 || t > ray[CM_RAY.T] * rayLen){return ray;}
 	

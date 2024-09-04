@@ -30,8 +30,13 @@ global.__cmi_container_add[CM_OBJECTS.BOX]			= default_function;
 global.__cmi_container_add[CM_OBJECTS.DISK]			= default_function;
 global.__cmi_container_add[CM_OBJECTS.TORUS]		= default_function;
 #macro CM_CONTAINER_ADD global.__cmi_container_add[container[0]]
+/// @func cm_add(container, object1, [object2], ... , [object15])
 function cm_add(container, object)
 {
 	if (!is_array(object)){return false;}
-	return CM_CONTAINER_ADD(container, object);
+	for (var i = 1; i < argument_count; ++i)
+	{
+		CM_CONTAINER_ADD(container, argument[i]);
+	}
+	return object;
 }
