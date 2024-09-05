@@ -138,6 +138,7 @@
     {"name":"cm_disk_get_closest_point","order":8,"path":"scripts/cm_disk_get_closest_point/cm_disk_get_closest_point.yy",},
     {"name":"cm_disk","order":3,"path":"scripts/cm_disk/cm_disk.yy",},
     {"name":"cm_displace","order":9,"path":"scripts/cm_displace/cm_displace.yy",},
+    {"name":"cm_dynamic_add","order":10,"path":"scripts/cm_dynamic_add/cm_dynamic_add.yy",},
     {"name":"cm_dynamic_cast_ray","order":4,"path":"scripts/cm_dynamic_cast_ray/cm_dynamic_cast_ray.yy",},
     {"name":"cm_dynamic_check","order":5,"path":"scripts/cm_dynamic_check/cm_dynamic_check.yy",},
     {"name":"cm_dynamic_debug_draw","order":1,"path":"scripts/cm_dynamic_debug_draw/cm_dynamic_debug_draw.yy",},

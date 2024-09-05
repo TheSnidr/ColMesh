@@ -13,7 +13,7 @@ var default_function = function(container, object)
 	return object;
 }
 global.__cmi_container_add = array_create(CM_OBJECTS.NUM, default_function);
-global.__cmi_container_add[CM_OBJECTS.DYNAMIC]		= function(dynamic, object){CM_DYNAMIC_OBJECT = object;};
+global.__cmi_container_add[CM_OBJECTS.DYNAMIC]		= cm_dynamic_add;
 global.__cmi_container_add[CM_OBJECTS.LIST]			= cm_list_add;
 global.__cmi_container_add[CM_OBJECTS.SPATIALHASH]	= cm_spatialhash_add;
 global.__cmi_container_add[CM_OBJECTS.QUADTREE]		= cm_quadtree_add;
@@ -30,6 +30,7 @@ global.__cmi_container_add[CM_OBJECTS.BOX]			= default_function;
 global.__cmi_container_add[CM_OBJECTS.DISK]			= default_function;
 global.__cmi_container_add[CM_OBJECTS.TORUS]		= default_function;
 #macro CM_CONTAINER_ADD global.__cmi_container_add[container[0]]
+
 /// @func cm_add(container, object1, [object2], ... , [object15])
 function cm_add(container, object)
 {

@@ -197,6 +197,7 @@
     {"id":{"name":"cm_disk_get_closest_point","path":"scripts/cm_disk_get_closest_point/cm_disk_get_closest_point.yy",},},
     {"id":{"name":"cm_disk","path":"scripts/cm_disk/cm_disk.yy",},},
     {"id":{"name":"cm_displace","path":"scripts/cm_displace/cm_displace.yy",},},
+    {"id":{"name":"cm_dynamic_add","path":"scripts/cm_dynamic_add/cm_dynamic_add.yy",},},
     {"id":{"name":"cm_dynamic_cast_ray","path":"scripts/cm_dynamic_cast_ray/cm_dynamic_cast_ray.yy",},},
     {"id":{"name":"cm_dynamic_check","path":"scripts/cm_dynamic_check/cm_dynamic_check.yy",},},
     {"id":{"name":"cm_dynamic_debug_bake","path":"scripts/cm_dynamic_debug_bake/cm_dynamic_debug_bake.yy",},},
