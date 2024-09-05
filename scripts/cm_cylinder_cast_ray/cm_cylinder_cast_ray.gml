@@ -26,16 +26,13 @@ function cm_cylinder_cast_ray(cylinder, ray, mask = ray[CM_RAY.MASK])
 	var oax = rox - x1;
 	var oay = roy - y1;
 	var oaz = roz - z1;
-	var rayLen = point_distance_3d(0, 0, 0, rdx, rdy, rdz);
-	rdx /= rayLen;
-	rdy /= rayLen;
-	rdz /= rayLen;
 	var baba = dot_product_3d(bax, bay, baz, bax, bay, baz);
 	var bard = dot_product_3d(bax, bay, baz, rdx, rdy, rdz);
+	var rdrd = dot_product_3d(rdx, rdy, rdz, rdx, rdy, rdz);
 	var baoa = dot_product_3d(bax, bay, baz, oax, oay, oaz);
 	var rdoa = dot_product_3d(rdx, rdy, rdz, oax, oay, oaz);
 	var oaoa = dot_product_3d(oax, oay, oaz, oax, oay, oaz);
-	var a = baba - bard * bard;
+	var a = baba * rdrd - bard * bard;
 	var b = baba * rdoa - baoa * bard;
 	var c = baba * oaoa - baoa * baoa - R * R * baba;
 	var h = b * b - a * c;
@@ -45,7 +42,7 @@ function cm_cylinder_cast_ray(cylinder, ray, mask = ray[CM_RAY.MASK])
 	h = sqrt(h);
 	var t = - (b + h) / a;
 	var l = baoa + t * bard;
-	if (t >= 0 && t <= ray[CM_RAY.T] * rayLen && l > 0 && l < baba)
+	if (t >= 0 && t <= ray[CM_RAY.T] && l > 0 && l < baba)
 	{
 		//Body
 		var itsX = rox + rdx * t;
@@ -53,7 +50,7 @@ function cm_cylinder_cast_ray(cylinder, ray, mask = ray[CM_RAY.MASK])
 		var itsZ = roz + rdz * t;
 		var n = clamp(dot_product_3d(itsX - x1, itsY - y1, itsZ - z1, bax, bay, baz) / baba, 0, 1);
 	
-		ray[@ CM_RAY.T] = t / rayLen;
+		ray[@ CM_RAY.T] = t;
 		ray[@ CM_RAY.HIT] = true;
 		ray[@ CM_RAY.X] = itsX;
 		ray[@ CM_RAY.Y] = itsY;
@@ -67,10 +64,10 @@ function cm_cylinder_cast_ray(cylinder, ray, mask = ray[CM_RAY.MASK])
 	{
 		//Caps
 		t = (((l < 0) ? 0 : baba) - baoa) / bard;
-		if (t >= 0 && t <= ray[CM_RAY.T] * rayLen && abs(b + a * t) < h)
+		if (t >= 0 && t <= ray[CM_RAY.T] && abs(b + a * t) < h)
 		{
 			var ba = sign(l) / sqrt(baba);
-			ray[@ CM_RAY.T] = t / rayLen;
+			ray[@ CM_RAY.T] = t;
 			ray[@ CM_RAY.HIT] = true;
 			ray[@ CM_RAY.X] = rox + rdx * t;
 			ray[@ CM_RAY.Y] = roy + rdy * t;
