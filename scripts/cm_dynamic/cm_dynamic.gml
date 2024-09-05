@@ -27,7 +27,7 @@ enum CM_DYNAMIC
 #macro CM_DYNAMIC_UPDATE	cm_dynamic_set_matrix(dynamic, matrix, moving)
 #macro CM_DYNAMIC_END		return dynamic
 									
-function cm_dynamic(object, matrix, moving = false, group = CM_GROUP_SOLID)
+function cm_dynamic(object, matrix = matrix_build_identity(), moving = false, group = CM_GROUP_SOLID)
 {
 	CM_DYNAMIC_BEGIN;
 	CM_DYNAMIC_GROUP = group;
