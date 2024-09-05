@@ -3,7 +3,7 @@
 	Useful for batching shapes together when debugging.
 */
 
-function cm_torus_debug_bake(torus, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 1, vRep = 1, color = undefined, hVerts = 20, vVerts = 10)
+function cm_torus_debug_bake(torus, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 1, vRep = 1, color = undefined, alpha = 1, hVerts = 20, vVerts = 10)
 {
 	if (mask != 0 && (mask & CM_TORUS_GROUP) == 0){return false;}
 	
@@ -57,7 +57,7 @@ function cm_torus_debug_bake(torus, vbuff, matrix = matrix_build_identity(), mas
 			var d = point_distance_3d(0, 0, 0, n[0], n[1], n[2]);
 			vertex_normal(vbuff, n[0] / d, n[1] / d, n[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc1 * R + xc1 * ys2 * r, xs1 * R + xs1 * ys2 * r, yc2 * r);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -65,7 +65,7 @@ function cm_torus_debug_bake(torus, vbuff, matrix = matrix_build_identity(), mas
 			var d = point_distance_3d(0, 0, 0, n[0], n[1], n[2]);
 			vertex_normal(vbuff, n[0] / d, n[1] / d, n[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * R + xc2 * ys1 * r, xs2 * R + xs2 * ys1 * r, yc1 * r);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -73,7 +73,7 @@ function cm_torus_debug_bake(torus, vbuff, matrix = matrix_build_identity(), mas
 			var d = point_distance_3d(0, 0, 0, n[0], n[1], n[2]);
 			vertex_normal(vbuff, n[0] / d, n[1] / d, n[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			
 			var v = matrix_transform_vertex(M, xc1 * R + xc1 * ys2 * r, xs1 * R + xs1 * ys2 * r, yc2 * r);
@@ -82,7 +82,7 @@ function cm_torus_debug_bake(torus, vbuff, matrix = matrix_build_identity(), mas
 			var d = point_distance_3d(0, 0, 0, n[0], n[1], n[2]);
 			vertex_normal(vbuff, n[0] / d, n[1] / d, n[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * R + xc2 * ys2 * r, xs2 * R + xs2 * ys2 * r, yc2 * r);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -90,7 +90,7 @@ function cm_torus_debug_bake(torus, vbuff, matrix = matrix_build_identity(), mas
 			var d = point_distance_3d(0, 0, 0, n[0], n[1], n[2]);
 			vertex_normal(vbuff, n[0] / d, n[1] / d, n[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * R + xc2 * ys1 * r, xs2 * R + xs2 * ys1 * r, yc1 * r);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -98,7 +98,7 @@ function cm_torus_debug_bake(torus, vbuff, matrix = matrix_build_identity(), mas
 			var d = point_distance_3d(0, 0, 0, n[0], n[1], n[2]);
 			vertex_normal(vbuff, n[0] / d, n[1] / d, n[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 		}
 	}

@@ -3,7 +3,7 @@
 	Useful for batching shapes together when debugging.
 */
 
-function cm_sphere_debug_bake(sphere, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 2, vRep = 1, color = undefined, hVerts = 16, vVerts = 8)
+function cm_sphere_debug_bake(sphere, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 2, vRep = 1, color = undefined, alpha = 1, hVerts = 40, vVerts = 20)
 {
 	if (mask != 0 && (mask & CM_SPHERE_GROUP) == 0){return false;}
 	
@@ -49,7 +49,7 @@ function cm_sphere_debug_bake(sphere, vbuff, matrix = matrix_build_identity(), m
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc1 * ys2, xs1 * ys2, yc2);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -57,7 +57,7 @@ function cm_sphere_debug_bake(sphere, vbuff, matrix = matrix_build_identity(), m
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * ys1, xs2 * ys1, yc1);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -65,7 +65,7 @@ function cm_sphere_debug_bake(sphere, vbuff, matrix = matrix_build_identity(), m
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc1 * ys2, xs1 * ys2, yc2);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -73,7 +73,7 @@ function cm_sphere_debug_bake(sphere, vbuff, matrix = matrix_build_identity(), m
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * ys2, xs2 * ys2, yc2);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -81,7 +81,7 @@ function cm_sphere_debug_bake(sphere, vbuff, matrix = matrix_build_identity(), m
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * ys1, xs2 * ys1, yc1);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -89,7 +89,7 @@ function cm_sphere_debug_bake(sphere, vbuff, matrix = matrix_build_identity(), m
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 		}
 	}
 }

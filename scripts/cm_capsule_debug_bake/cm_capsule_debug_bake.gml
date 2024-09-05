@@ -3,7 +3,7 @@
 	Useful for batching shapes together when debugging.
 */
 
-function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 1, vRep = 1, color = undefined, hVerts = 16, vVerts = 8)
+function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 1, vRep = 1, color = undefined, alpha = 1, hVerts = 16, vVerts = 8)
 {
 	if (mask != 0 && (mask & CM_CAPSULE_GROUP) == 0){return false;}
 	
@@ -40,7 +40,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 		var v = matrix_transform_vertex(M, xc1, xs1, 0, 0);
 		var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 		vertex_texcoord(vbuff, xx / hVerts * hRep, 0);
-		vertex_color(vbuff, color, 1);
+		vertex_color(vbuff, color, alpha);
 		
 		var v = matrix_transform_vertex(M, xc2 * R, xs2 * R, 0);
 		vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -48,7 +48,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 		var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 		vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 		vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, 0);
-		vertex_color(vbuff, color, 1);
+		vertex_color(vbuff, color, alpha);
 		
 		var v = matrix_transform_vertex(M, xc1 * R, xs1 * R, H);
 		vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -56,7 +56,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 		var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 		vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 		vertex_texcoord(vbuff, xx / hVerts * hRep, vRep);
-		vertex_color(vbuff, color, 1);
+		vertex_color(vbuff, color, alpha);
 		
 		
 		
@@ -66,7 +66,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 		var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 		vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 		vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, 0);
-		vertex_color(vbuff, color, 1);
+		vertex_color(vbuff, color, alpha);
 		
 		var v = matrix_transform_vertex(M, xc2 * R, xs2 * R, H);
 		vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -74,7 +74,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 		var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 		vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 		vertex_texcoord(vbuff, xx / hVerts * hRep, vRep);
-		vertex_color(vbuff, color, 1);
+		vertex_color(vbuff, color, alpha);
 		
 		var v = matrix_transform_vertex(M, xc1 * R, xs1 * R, H);
 		vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -82,7 +82,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 		var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 		vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 		vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, vRep);
-		vertex_color(vbuff, color, 1);
+		vertex_color(vbuff, color, alpha);
 		
 		
 		for (var yy = 0; yy < vVerts; yy ++)
@@ -101,7 +101,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * ys1 * R, xs2 * ys1 * R, - yc1 * R);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -109,7 +109,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc1 * ys2 * R, xs1 * ys2 * R, - yc2 * R);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -117,7 +117,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			
 			var v = matrix_transform_vertex(M, xc1 * ys2 * R, xs1 * ys2 * R, - yc2 * R);
@@ -126,7 +126,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * ys1 * R, xs2 * ys1 * R, - yc1 * R);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -134,7 +134,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * ys2 * R, xs2 * ys2 * R, - yc2 * R);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -142,7 +142,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			
 			//Draw top hemisphere
@@ -152,7 +152,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc1 * ys1 * R, xs1 * ys1 * R, H + yc1 * R);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -160,7 +160,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc1 * ys2 * R, xs1 * ys2 * R, H + yc2 * R);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -168,7 +168,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			
 			var v = matrix_transform_vertex(M, xc2 * ys1 * R, xs2 * ys1 * R, H + yc1 * R);
@@ -177,7 +177,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, yy / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc1 * ys2 * R, xs1 * ys2 * R, H + yc2 * R);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -185,7 +185,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, xx / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 			var v = matrix_transform_vertex(M, xc2 * ys2 * R, xs2 * ys2 * R, H + yc2 * R);
 			vertex_position_3d(vbuff, v[0], v[1], v[2]);
@@ -193,7 +193,7 @@ function cm_capsule_debug_bake(capsule, vbuff, matrix = matrix_build_identity(),
 			var d = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);
 			vertex_normal(vbuff, v[0] / d, v[1] / d, v[2] / d);
 			vertex_texcoord(vbuff, (xx+1) / hVerts * hRep, (yy+1) / vVerts * vRep);
-			vertex_color(vbuff, color, 1);
+			vertex_color(vbuff, color, alpha);
 			
 		}
 	}

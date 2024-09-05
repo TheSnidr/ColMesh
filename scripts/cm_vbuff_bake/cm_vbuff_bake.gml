@@ -3,8 +3,8 @@
 */
 
 global.__cmi_debug_bake = array_create(CM_OBJECTS.NUM);
-global.__cmi_debug_bake[CM_OBJECTS.COLLIDERCAPSULE]	= function(collider, vbuff, matrix = matrix_build_identity(), mask = 0, hrep = 1, vrep = 1, color = -1)
-														{cm_capsule_debug_bake(cm_collider_get_capsule(collider), vbuff, matrix, mask, hrep, vrep, color);};
+global.__cmi_debug_bake[CM_OBJECTS.COLLIDERCAPSULE]	= function(collider, vbuff, matrix = matrix_build_identity(), mask = 0, hrep = 1, vrep = 1, color = -1, alpha = 1)
+														{cm_capsule_debug_bake(cm_collider_get_capsule(collider), vbuff, matrix, mask, hrep, vrep, color, alpha);};
 global.__cmi_debug_bake[CM_OBJECTS.DYNAMIC]			= cm_dynamic_debug_bake;
 global.__cmi_debug_bake[CM_OBJECTS.LIST]			= cm_list_debug_bake;
 global.__cmi_debug_bake[CM_OBJECTS.SPATIALHASH]		= cm_spatialhash_debug_bake;
@@ -23,7 +23,7 @@ global.__cmi_debug_bake[CM_OBJECTS.DISK]			= cm_disk_debug_bake;
 global.__cmi_debug_bake[CM_OBJECTS.TORUS]			= cm_torus_debug_bake;
 #macro CM_VBUFF_BAKE global.__cmi_debug_bake[object[0]]
 
-function cm_vbuff_bake(object, vbuff, matrix = matrix_build_identity(), mask = 0, hrep = 1, vrep = 1, color = -1)
+function cm_vbuff_bake(object, vbuff, matrix = matrix_build_identity(), mask = 0, hrep = 1, vrep = 1, color = -1, alpha = 1)
 {
-	return CM_VBUFF_BAKE(object, vbuff, matrix, mask, hrep, vrep, color);
+	return CM_VBUFF_BAKE(object, vbuff, matrix, mask, hrep, vrep, color, alpha);
 }

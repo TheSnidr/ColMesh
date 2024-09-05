@@ -3,7 +3,7 @@
 	Useful for batching shapes together when debugging.
 */
 
-function cm_spatialhash_debug_bake(spatialhash, vbuff, matrix, mask = 0, hrep = 1, vrep = 1, color = -1)
+function cm_spatialhash_debug_bake(spatialhash, vbuff, matrix, mask = 0, hrep = 1, vrep = 1, color = -1, alpha = 1)
 {
 	var region = cm_list();
 	var map = CM_SPATIALHASH_MAP;
@@ -18,5 +18,5 @@ function cm_spatialhash_debug_bake(spatialhash, vbuff, matrix, mask = 0, hrep = 
 		size += num;
 	}
 	region[CM_LIST.SIZE] = array_unique_ext(region, 0, size);
-	cm_list_debug_bake(region, vbuff, matrix, mask, hrep, vrep, color);
+	cm_list_debug_bake(region, vbuff, matrix, mask, hrep, vrep, color, alpha);
 }

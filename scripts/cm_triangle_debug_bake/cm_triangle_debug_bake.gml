@@ -3,7 +3,7 @@
 	Useful for batching shapes together when debugging.
 */
 
-function cm_triangle_debug_bake_wireframe(triangle, vbuff, matrix = matrix_build_identity(), mask = 0, color = undefined)
+function cm_triangle_debug_bake(triangle, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 1, vRep = 1, color = undefined, alpha = 1)
 {
 	if (mask > 0 && (mask & CM_TRIANGLE_GROUP) == 0){return false;}
 	if (is_undefined(color))
@@ -39,7 +39,7 @@ function cm_triangle_debug_bake_wireframe(triangle, vbuff, matrix = matrix_build
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	if (smooth)
 	{
@@ -53,7 +53,7 @@ function cm_triangle_debug_bake_wireframe(triangle, vbuff, matrix = matrix_build
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 1, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	if (smooth)
 	{
@@ -67,5 +67,5 @@ function cm_triangle_debug_bake_wireframe(triangle, vbuff, matrix = matrix_build
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, 1);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 }

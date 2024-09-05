@@ -3,7 +3,7 @@
 	Useful for batching shapes together when debugging.
 */
 
-function cm_box_debug_bake(box, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 1, vRep = 1, color = undefined)
+function cm_box_debug_bake(box, vbuff, matrix = matrix_build_identity(), mask = 0, hRep = 1, vRep = 1, color = undefined, alpha = 1)
 {
 	if (mask != 0 && (mask & CM_BOX_GROUP) == 0){return false;}
 	
@@ -32,38 +32,38 @@ function cm_box_debug_bake(box, vbuff, matrix = matrix_build_identity(), mask = 
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, 1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	var v = matrix_transform_vertex(M, -1, 1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, 1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	//-z
@@ -76,38 +76,38 @@ function cm_box_debug_bake(box, vbuff, matrix = matrix_build_identity(), mask = 
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, -1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	var v = matrix_transform_vertex(M, -1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, -1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	//+x
@@ -120,38 +120,38 @@ function cm_box_debug_bake(box, vbuff, matrix = matrix_build_identity(), mask = 
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	var v = matrix_transform_vertex(M, 1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, 1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	//-x
@@ -164,38 +164,38 @@ function cm_box_debug_bake(box, vbuff, matrix = matrix_build_identity(), mask = 
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	var v = matrix_transform_vertex(M, -1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, 1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	//+y
@@ -208,38 +208,38 @@ function cm_box_debug_bake(box, vbuff, matrix = matrix_build_identity(), mask = 
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, 1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	var v = matrix_transform_vertex(M, 1, 1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, 1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, 1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	//-y
@@ -252,36 +252,36 @@ function cm_box_debug_bake(box, vbuff, matrix = matrix_build_identity(), mask = 
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, -1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	
 	var v = matrix_transform_vertex(M, 1, -1, -1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, 0, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, 1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, vRep);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 	
 	var v = matrix_transform_vertex(M, -1, -1, 1);
 	vertex_position_3d(vbuff, v[0], v[1], v[2]);
 	vertex_normal(vbuff, n[0], n[1], n[2]);
 	vertex_texcoord(vbuff, hRep, 0);
-	vertex_color(vbuff, color, 1);
+	vertex_color(vbuff, color, alpha);
 }
