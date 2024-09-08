@@ -34,7 +34,7 @@ function cm_sphere_debug_draw(sphere, tex = -1, color = undefined, mask = -1)
 	
 	matrix_set(matrix_world, matrix_multiply(M, W));
 	vertex_submit(vbuff, pr_trianglelist, tex);
-	matrix_set(matrix_world, matrix_build_identity());
+	matrix_set(matrix_world, W);
 	
 	if (shader_current() == sh_cm_debug)
 	{

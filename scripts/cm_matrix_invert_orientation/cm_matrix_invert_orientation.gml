@@ -11,7 +11,7 @@ function cm_matrix_invert_orientation(M, I = array_create(16))
 	var det =   dot_product_3d(m0, m1, m2, i0, i4, i8);
 	if (det == 0)
 	{
-		show_debug_message("Error in function colmesh_matrix_invert_fast: The determinant is zero.");
+		show_debug_message("Error in function cm_matrix_invert_orientation: The determinant is zero.");
 		return M;
 	}
 	var invDet = 1 / det;

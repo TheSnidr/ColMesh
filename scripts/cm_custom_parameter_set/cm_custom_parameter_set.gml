@@ -10,4 +10,5 @@ function cm_custom_parameter_set(object, parameter)
 		return false;
 	}
 	object[@ ind] = parameter;
+	return object;
 }
