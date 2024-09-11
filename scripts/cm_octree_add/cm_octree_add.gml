@@ -34,6 +34,14 @@ function cm_octree_add(octree, object)
 		//If this region contains too many objects, and is large enough to subdivide, subdivide it.
 		if (contentnum >= maxobjects && oct_size > minregionsize)
 		{
+			cm_debug_message($"cm_octree_add: More than the maximum {maxobjects} has been added to the root octree. Subdiving...");
+			
+			//Make sure the size is a power of two times the minimum region size
+			oct_size = minregionsize * power(2, ceil(log2(oct_size / minregionsize)));
+			oct_aabb[@ 3] = oct_aabb[@ 0] + oct_size;
+			oct_aabb[@ 4] = oct_aabb[@ 1] + oct_size;
+			oct_aabb[@ 5] = oct_aabb[@ 2] + oct_size;
+			CM_OCTREE_SIZE = oct_size;
 			CM_OCTREE_SUBDIVIDED = true;
 			CM_OCTREE_OBJECTLIST = cm_list();
 			cm_octree_add(octree, objectlist);
@@ -46,8 +54,7 @@ function cm_octree_add(octree, object)
 			//If this is the first object added to the octree, move the AABB as well.
 			if (contentnum == 0)
 			{	
-				var obj_size = max(obj_aabb[3] - obj_aabb[0], obj_aabb[4] - obj_aabb[1], obj_aabb[5] - obj_aabb[2]);
-				oct_size = minregionsize * power(2, ceil(log2(obj_size / minregionsize)));
+				oct_size = max(obj_aabb[3] - obj_aabb[0], obj_aabb[4] - obj_aabb[1], obj_aabb[5] - obj_aabb[2]);
 				oct_aabb[@ 0] = obj_aabb[0];
 				oct_aabb[@ 1] = obj_aabb[1];
 				oct_aabb[@ 2] = obj_aabb[2];
@@ -65,8 +72,7 @@ function cm_octree_add(octree, object)
 				var x2 = max(obj_aabb[3], oct_aabb[3]);
 				var y2 = max(obj_aabb[4], oct_aabb[4]);
 				var z2 = max(obj_aabb[5], oct_aabb[5]);
-				var obj_size = max(x2 - x1, y2 - y1, z2 - z1);
-				oct_size = minregionsize * power(2, ceil(log2(obj_size / minregionsize)));
+				oct_size = max(x2 - x1, y2 - y1, z2 - z1);
 				oct_aabb[@ 0] = x1;
 				oct_aabb[@ 1] = y1;
 				oct_aabb[@ 2] = z1;
@@ -91,6 +97,12 @@ function cm_octree_add(octree, object)
 	if (isroot && (x1 < 0 || y1 < 0 || z1 < 0 || x2 > oct_size || y2 > oct_size || z2 > oct_size))
 	{
 		cm_debug_message($"cm_octree_add: Object added outside the edge of the octree. Expanding to size {oct_size * 2}");
+		
+		//Make sure the size is a power of two times the minimum region size
+		oct_size = minregionsize * power(2, ceil(log2(oct_size / minregionsize)));
+		oct_aabb[@ 3] = oct_aabb[@ 0] + oct_size;
+		oct_aabb[@ 4] = oct_aabb[@ 1] + oct_size;
+		oct_aabb[@ 5] = oct_aabb[@ 2] + oct_size;
 		
 		//Copy all the contents of this octree over to a child octree.
 		var child = cm_octree(minregionsize, maxobjects);

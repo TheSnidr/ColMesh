@@ -34,6 +34,11 @@ function cm_quadtree_add(quadtree, object)
 		//If this region contains too many objects, and is large enough to subdivide, subdivide it.
 		if (contentnum >= maxobjects && quad_size > minregionsize)
 		{
+			//Make sure the size is a power of two times the minimum region size
+			quad_size = minregionsize * power(2, ceil(log2(quad_size / minregionsize)));
+			quad_aabb[@ 3] = quad_aabb[@ 0] + quad_size;
+			quad_aabb[@ 4] = quad_aabb[@ 1] + quad_size;
+			CM_QUADTREE_SIZE = quad_size;
 			CM_QUADTREE_SUBDIVIDED = true;
 			CM_QUADTREE_OBJECTLIST = cm_list();
 			cm_quadtree_add(quadtree, objectlist);
@@ -46,8 +51,7 @@ function cm_quadtree_add(quadtree, object)
 			//If this is the first object added to the quadtree, move the AABB as well.
 			if (contentnum == 0)
 			{	
-				var obj_size = max(obj_aabb[3] - obj_aabb[0], obj_aabb[4] - obj_aabb[1]);
-				quad_size = minregionsize * power(2, ceil(log2(obj_size / minregionsize)));
+				quad_size = max(obj_aabb[3] - obj_aabb[0], obj_aabb[4] - obj_aabb[1]);
 				quad_aabb[@ 0] = obj_aabb[0];
 				quad_aabb[@ 1] = obj_aabb[1];
 				quad_aabb[@ 2] = obj_aabb[2];
@@ -65,8 +69,7 @@ function cm_quadtree_add(quadtree, object)
 				var x2 = max(obj_aabb[3], quad_aabb[3]);
 				var y2 = max(obj_aabb[4], quad_aabb[4]);
 				var z2 = max(obj_aabb[5], quad_aabb[5]);
-				var obj_size = max(x2 - x1, y2 - y1);
-				quad_size = minregionsize * power(2, ceil(log2(obj_size / minregionsize)));
+				quad_size = max(x2 - x1, y2 - y1);
 				quad_aabb[@ 0] = x1;
 				quad_aabb[@ 1] = y1;
 				quad_aabb[@ 2] = z1;
@@ -89,6 +92,11 @@ function cm_quadtree_add(quadtree, object)
 	if (isroot && (x1 < 0 || y1 < 0 || x2 > quad_size || y2 > quad_size))
 	{
 		cm_debug_message($"cm_quadtree_add: Object added outside the edge of the quadtree. Expanding to size {quad_size * 2}");
+		
+		//Make sure the size is a power of two times the minimum region size
+		quad_size = minregionsize * power(2, ceil(log2(quad_size / minregionsize)));
+		quad_aabb[@ 3] = quad_aabb[@ 0] + quad_size;
+		quad_aabb[@ 4] = quad_aabb[@ 1] + quad_size;
 		
 		//Copy all the contents of this quadtree over to a child quadtree.
 		var child = cm_quadtree(minregionsize, maxobjects);
