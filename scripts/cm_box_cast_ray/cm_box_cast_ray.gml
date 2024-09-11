@@ -1,9 +1,5 @@
 function cm_box_cast_ray(box, ray, mask = ray[CM_RAY.MASK])
 {
-	/*
-		A supplementary function, not meant to be used by itself.
-		Used by colmesh.castRay
-	*/
 	if (mask != 0 && (mask & CM_BOX_GROUP) == 0){return ray;}
 	
 	var M = CM_BOX_M;
@@ -11,8 +7,8 @@ function cm_box_cast_ray(box, ray, mask = ray[CM_RAY.MASK])
 	var T = ray[CM_RAY.T];
 	
 	//Algorithm created by TheSnidr
-	var o = matrix_transform_vertex(I, ray[0], ray[1], ray[2]);
-	var e = matrix_transform_vertex(I, ray[3], ray[4], ray[5]);
+	var o = matrix_transform_vertex(I, ray[CM_RAY.X1], ray[CM_RAY.Y1], ray[CM_RAY.Z1]);
+	var e = matrix_transform_vertex(I, ray[CM_RAY.X2], ray[CM_RAY.Y2], ray[CM_RAY.Z2]);
 	var x1 = o[0], y1 = o[1], z1 = o[2];
 	var x2 = e[0], y2 = e[1], z2 = e[2];
 	
