@@ -89,6 +89,7 @@
     {"name":"cm_add_obj","order":3,"path":"scripts/cm_add_obj/cm_add_obj.yy",},
     {"name":"cm_add_smf","order":20,"path":"scripts/cm_add_smf/cm_add_smf.yy",},
     {"name":"cm_add","order":2,"path":"scripts/cm_add/cm_add.yy",},
+    {"name":"cm_bake","order":7,"path":"scripts/cm_bake/cm_bake.yy",},
     {"name":"cm_box_cast_ray","order":4,"path":"scripts/cm_box_cast_ray/cm_box_cast_ray.yy",},
     {"name":"cm_box_check","order":5,"path":"scripts/cm_box_check/cm_box_check.yy",},
     {"name":"cm_box_debug_draw","order":1,"path":"scripts/cm_box_debug_draw/cm_box_debug_draw.yy",},

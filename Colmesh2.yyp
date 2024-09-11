@@ -84,7 +84,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.8.0.169",
+    "IDEVersion":"2024.8.1.171",
   },
   "name":"Colmesh2",
   "resources":[
@@ -142,6 +142,7 @@
     {"id":{"name":"cm_add_obj","path":"scripts/cm_add_obj/cm_add_obj.yy",},},
     {"id":{"name":"cm_add_smf","path":"scripts/cm_add_smf/cm_add_smf.yy",},},
     {"id":{"name":"cm_add","path":"scripts/cm_add/cm_add.yy",},},
+    {"id":{"name":"cm_bake","path":"scripts/cm_bake/cm_bake.yy",},},
     {"id":{"name":"cm_box_cast_ray","path":"scripts/cm_box_cast_ray/cm_box_cast_ray.yy",},},
     {"id":{"name":"cm_box_check","path":"scripts/cm_box_check/cm_box_check.yy",},},
     {"id":{"name":"cm_box_debug_bake","path":"scripts/cm_box_debug_bake/cm_box_debug_bake.yy",},},
