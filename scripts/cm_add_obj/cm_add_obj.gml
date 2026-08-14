@@ -34,7 +34,7 @@ function cm_add_obj(container, filename, matrix = undefined, singlesided = true,
 	//Read .obj as text
 	for (var i = 0; i < num; ++i)
 	{
-		var this_line = lines[i];
+		var this_line = string_trim(lines[i]);
 		if (this_line == "") continue;
 		
 		var tokens = string_split(this_line, " ");
